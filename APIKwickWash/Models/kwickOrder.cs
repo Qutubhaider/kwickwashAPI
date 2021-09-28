@@ -24,6 +24,7 @@ namespace APIKwickWash.Models
         public string companyName { get; set; }
         public string did { get; set; }
         public string dName { get; set; }
+        public string isAccept { get; set; }
     }
 
     public class CreatekwickOrder:kwickOrder
@@ -50,6 +51,7 @@ namespace APIKwickWash.Models
             lat = dr["lat"].ToString();
             longs = dr["longs"].ToString();
             dName = dr["dName"].ToString();
+            isAccept = dr["isAccept"].ToString();
         }
     }
 
@@ -68,12 +70,13 @@ namespace APIKwickWash.Models
             customerName = dr["customerName"].ToString();
             mobile = dr["mobile"].ToString();
             DateTime odt = Convert.ToDateTime(dr["orderDate"]);
-            orderDate = odt.ToString("dd-MMM-yyyy").ToString();
+            orderDate = odt.ToString("dd-MMM-yyyy hh:mm").ToString();
             shopId = dr["shopId"].ToString();
             lat = dr["lat"].ToString();
             longs = dr["longs"].ToString();
             companyName = dr["companyName"].ToString();
             dName = dr["dName"].ToString();
+            isAccept = dr["isAccept"].ToString();
         }
     }
 }

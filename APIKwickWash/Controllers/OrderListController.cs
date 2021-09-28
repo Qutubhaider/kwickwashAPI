@@ -14,7 +14,7 @@ namespace APIKwickWash.Controllers
     public class OrderListController : ApiController
     {
         // GET: OrderList
-        public IEnumerable<OrderList> Get(int id)
+        public List<OrderList> Get(int id)
         {
             string query = "";
             if (id == 0)
@@ -41,7 +41,7 @@ namespace APIKwickWash.Controllers
             return OrderList;
         }
 
-        public IEnumerable<OrderList> GetData(int orderId,string status)
+        public List<OrderList> GetData(int orderId,string status)
         {
             string query = "select ad.ProdctName,ad.Qty,ad.Price,ad.TotalPrice,c.companyName,o.SUserid,o.ttlDiscount,o.ttlPayableAmount,o.paymentMode,o.deliveryStatus,o.orderId,o.invoiceNo,o.ttlQty,o.ttlAmount," +
                 "o.Status,p.name,p.mobile,o.orderDate,o.deliveryDate,o.OrderType,o.pickupRequest,o.dropRequest,o.pickupSlip from tbl.Orders o join tbl.profile p " +
@@ -58,7 +58,7 @@ namespace APIKwickWash.Controllers
             return OrderList;
         }
 
-        public IEnumerable<OrderList> GetOrderReport(int id, string fdate, string tdate,string pstatus)
+        public List<OrderList> GetOrderReport(int id, string fdate, string tdate,string pstatus)
         {
             string query = "", query_where = "";
             if (tdate == "0")
@@ -137,7 +137,7 @@ namespace APIKwickWash.Controllers
             return OrderList;
         }
 
-        public IEnumerable<OrderList> GetOrderHistory(string orderId, string status, string cid)
+        public List<OrderList> GetOrderHistory(string orderId, string status, string cid)
         {
             string query = "";
             query = "select ad.ProdctName,ad.Qty,ad.Price,ad.TotalPrice,c.companyName,o.SUserid,o.ttlDiscount,o.ttlPayableAmount,o.paymentMode,o.deliveryStatus,o.orderId,o.invoiceNo,o.ttlQty,o.ttlAmount," +
@@ -154,6 +154,24 @@ namespace APIKwickWash.Controllers
                 }
             }
             return OrderList;
+        }
+
+        public List<OrderList> GetCustomerOrderDetails(string filterData)
+        {
+            List<OrderList> orderLists = new List<OrderList>();
+            try
+            {
+                string query = "select ad.ProdctName,ad.Qty,ad.Price,ad.TotalPrice,c.companyName,o.SUserid,o.ttlDiscount,o.ttlPayableAmount,o.paymentMode," +
+                    "o.deliveryStatus,o.orderId,o.invoiceNo,o.ttlQty,o.ttlAmount,o.Status,p.name,p.mobile,o.orderDate,o.deliveryDate,o.OrderType," +
+                    "o.pickupRequest,o.dropRequest,o.pickupSlip from tbl.Orders o join tbl.profile p on p.userid=o.cuserid join tbl.CompanyProfile " +
+                    "c on o.SUserid = c.Userid left join tbl.OrderAddOn ad on ad.OrderId=o.orderId where o.CUserid in (select userid from )" +
+                    "order by o.orderId desc";
+                return orderLists;
+            }
+            catch(Exception ex)
+            {
+                return orderLists;
+            }
         }
     }
 }

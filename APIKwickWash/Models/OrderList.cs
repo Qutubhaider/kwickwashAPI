@@ -45,9 +45,9 @@ namespace APIKwickWash.Models
             name = dr["name"].ToString();
             mobile = dr["mobile"].ToString();
             DateTime oDate = Convert.ToDateTime(dr["orderDate"]);
-            orderDate = oDate.ToString("dd-MMM-yyyy").ToString();
+            orderDate = oDate.ToString("dd-MMM-yyyy hh:mm").ToString();
             oDate = Convert.ToDateTime(dr["deliveryDate"]);
-            deliveryDate = oDate.ToString("dd-MMM-yyyy").ToString();
+            deliveryDate = oDate.ToString("dd-MMM-yyyy hh:mm").ToString();
             OrderType = dr["OrderType"].ToString();
             pickupRequest = dr["pickupRequest"].ToString();
             dropRequest = dr["dropRequest"].ToString();

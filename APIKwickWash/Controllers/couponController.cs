@@ -19,7 +19,7 @@ namespace APIKwickWash.Controllers
             string query = "";
             if (id==0)
             {
-                query = "select * from tbl.coupon";
+                query = "select * from tbl.coupon where  startDate<='" + DateTime.Now.ToString() + "' and endDate>='" + DateTime.Now.ToString() + "'";
                 DataTable dt = Database.get_DataTable(query);
                 List<coupon> coupon = new List<Models.coupon>(dt.Rows.Count);
                 if (dt.Rows.Count > 0)
@@ -33,7 +33,7 @@ namespace APIKwickWash.Controllers
             }
             else
             {
-                query = "select * from tbl.coupon where loginUserid='0'";
+                query = "select * from tbl.coupon where loginUserid='0' and startDate<='" + DateTime.Now.ToString() + "' and endDate>='" + DateTime.Now.ToString() + "'";
                 DataTable dt = Database.get_DataTable(query);
                 List<coupon> coupon = new List<Models.coupon>(dt.Rows.Count);
                 if (dt.Rows.Count > 0)
@@ -44,7 +44,7 @@ namespace APIKwickWash.Controllers
                     }
                 }
 
-                string query1 = "select * from tbl.coupon where loginUserid='" + id + "'";
+                string query1 = "select * from tbl.coupon where loginUserid='" + id + "' and startDate<='" + DateTime.Now.ToString() + "' and endDate>='" + DateTime.Now.ToString() + "'";
                 DataSet ds = Database.get_DataSet(query1);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
@@ -62,7 +62,8 @@ namespace APIKwickWash.Controllers
         public List<coupon> GetCoupon(string couponcode,string val)
         {
             string query = "";
-            query = "select * from tbl.coupon where couponCode='" + couponcode + "'";
+            //query = "select * from tbl.coupon where couponCode='" + couponcode + "'";
+            query = "select * from tbl.coupon where couponCode='"+couponcode+"' and startDate<='"+DateTime.Now.ToString()+ "' and endDate>='" + DateTime.Now.ToString() + "'";
             DataTable dt = Database.get_DataTable(query);
             List<coupon> coupon = new List<Models.coupon>(dt.Rows.Count);
             if (dt.Rows.Count > 0)

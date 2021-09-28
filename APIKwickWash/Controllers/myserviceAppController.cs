@@ -14,6 +14,7 @@ namespace APIKwickWash.Controllers
     public class myserviceAppController : ApiController
     {
         // GET: myserviceApp
+        [System.Web.Mvc.HttpGet]
         public IEnumerable<kwickService> Get(int id)
         {
             string query = "select ms.srId,s.serviceName,s.serviceDescription,s.serviceImg,ms.status,s.startAt,s.duration,s.Unit from tbl.myservice ms join tbl.service s on s.srid=ms.srid where ms.userid='" + id + "' and ms.status='1' order by s.orderno asc";

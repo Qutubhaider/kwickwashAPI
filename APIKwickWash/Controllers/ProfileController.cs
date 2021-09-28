@@ -8,12 +8,17 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using APIKwickWash.Models;
+using System.IO;
+using Newtonsoft.Json;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
 
 namespace APIKwickWash.Controllers
 {
     public class ProfileController : ApiController
     {
         /* GET api/<controller> */
+        [System.Web.Mvc.HttpPost]
         public IEnumerable<Profile> Get()
         {
             string query = "select * from tbl.Profile";
@@ -46,10 +51,10 @@ namespace APIKwickWash.Controllers
             return profile;
         }
 
-        public List<Profile> GetCustomer(string mobile,string shopUserid)
+        public List<Profile> GetCustomer(string mobile, string shopUserid)
         {
             string query;
-            if(mobile.ToString()=="0")
+            if (mobile.ToString() == "0")
             {
                 query = "select * from tbl.profile where uplineid='" + shopUserid + "'";
             }
@@ -69,9 +74,20 @@ namespace APIKwickWash.Controllers
             return profile;
         }
 
+        public class Response
+        {
+            public string message_id { get; set; }
+            public int message_count { get; set; }
+            public double price { get; set; }
+        }
+        public class RootObject
+        {
+            public Response Response { get; set; }
+            public string ErrorMessage { get; set; }
+            public int Status { get; set; }
+        }
 
-
-        public string Post([FromBody]CreateProfile values)
+        public string Post([FromBody] CreateProfile values)
         {
             try
             {
@@ -96,7 +112,7 @@ namespace APIKwickWash.Controllers
                         password = "pass@123";
                     }
 
-                   
+
                     roles = "2";
                     upLineId = "0";
                     string cname = values.name;
@@ -106,8 +122,8 @@ namespace APIKwickWash.Controllers
 
                     query_profile = "declare @Userid bigint select @Userid=IDENT_CURRENT('tbl.login')";
 
-                    query_profile += "insert into tbl.Profile(dtmAdd,userId,name,emailId,mobile,address,state,city,pincode,companyLogo,upLineId,Location) values " +
-                        "('" + DateTime.Now.ToString() + "',@Userid,'" + cname.ToString() + "','" + values.emailId + "','" + values.mobile + "','" + values.address
+                    query_profile += "insert into tbl.Profile(userId,name,emailId,mobile,address,state,city,pincode,companyLogo,upLineId,Location) values " +
+                        "(@Userid,'" + cname.ToString() + "','" + values.emailId + "','" + values.mobile + "','" + values.address
                         + "','" + values.state + "','" + values.city + "','" + values.pincode + "','" + values.companyLogo + "','" + shopId
                         + "','" + values.Location + "')";
                     res = Database.Execute_Transaction(query_login, query_profile);
@@ -197,11 +213,36 @@ namespace APIKwickWash.Controllers
                     query_profile = "update tbl.Profile set " + sqlQuery + " dtmUpdate='" + DateTime.Now.ToString() + "' where profileId='" + values.profileId + "'";
                     res1 = Database.Execute(query_profile);
                 }
-               
-                if (res == "1" ||  res1==1)
+
+                if (res == "1" || res1 == 1)
                 {
+                    if (res == "1")
+                    {
+
+
+                        //Call Send SMS API  
+                        string sendSMSUri = "http://m1.sarv.com/api/v2.0/sms_campaign.php?token=705915705611ff6c4c5f9d8.90022694&user_id=63515991&route=TR&template_id=5571&sender_id=JKWASH&language=EN&template=Thank+you+for+sign+in+with+KwickWash+Laundry.+We+welcome+you+for+amazing+hygienic+services.&contact_numbers=" + values.mobile.ToString();
+
+                        //Create HTTPWebrequest  
+                        HttpWebRequest httpWReq = (HttpWebRequest)WebRequest.Create(sendSMSUri);
+                       
+                        //Specify post method  
+                        httpWReq.Method = "POST";
+                        httpWReq.ContentType = "application/x-www-form-urlencoded";
+                        //Get the response  
+                        httpWReq.Timeout = 10000;
+
+                        HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
+                        StreamReader reader = new StreamReader(response.GetResponseStream());
+                        string responseString = reader.ReadToEnd();
+
+                        //Close the response  
+                        reader.Close();
+
+                        response.Close();
+                    }
                     string userId = "";
-                    if(values.shopUserId=="0")
+                    if (values.shopUserId == "0")
                     {
                         userId = "121";
                     }
@@ -219,7 +260,7 @@ namespace APIKwickWash.Controllers
             }
             catch (Exception ex)
             {
-                return "-1";
+                return "-1" + ex.ToString();
             }
         }
     }

@@ -32,18 +32,18 @@ namespace APIKwickWash.Controllers
 
             if (val == "1")
             {
-                query = "select k.koId,k.cityId,k.cityName,k.areaId,k.areaName,k.Location,k.srId,k.serviceName,k.customerName,k.mobile,k.orderDate" +
+                query = "select k.isAccept,k.koId,k.cityId,k.cityName,k.areaId,k.areaName,k.Location,k.srId,k.serviceName,k.customerName,k.mobile,k.orderDate" +
                 ",k.shopId,k.lat,k.longs,c.companyName,k.dName from tbl.kwickOrder k join tbl.CompanyProfile c on k.ShopId = c.Userid order by k.koId desc";
             }
             else if (id == "10")
             {
-                query = "select k.koId,k.cityId,k.cityName,k.areaId,k.areaName,k.Location,k.srId,k.serviceName,k.customerName,k.mobile,k.orderDate" +
+                query = "select k.isAccept,k.koId,k.cityId,k.cityName,k.areaId,k.areaName,k.Location,k.srId,k.serviceName,k.customerName,k.mobile,k.orderDate" +
                      ",k.shopId,k.lat,k.longs,c.companyName,k.dName from tbl.kwickOrder k join tbl.CompanyProfile c on k.ShopId = c.Userid " +
                      " where k.did in (select profileid from tbl.driver where userid='" + val + "') order by k.koId desc";
             }
             else
             {
-                query = "select k.koId,k.cityId,k.cityName,k.areaId,k.areaName,k.Location,k.srId,k.serviceName,k.customerName,k.mobile,k.orderDate" +
+                query = "select k.isAccept,k.koId,k.cityId,k.cityName,k.areaId,k.areaName,k.Location,k.srId,k.serviceName,k.customerName,k.mobile,k.orderDate" +
                 ",k.shopId,k.lat,k.longs,c.companyName,k.dName from tbl.kwickOrder k join tbl.CompanyProfile c on k.ShopId = c.Userid " +
                 "where k.shopId='" + val + "' order by k.koId desc";
             }

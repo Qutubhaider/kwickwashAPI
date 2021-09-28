@@ -8,6 +8,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using APIKwickWash.Models;
+using System.IO;
+using System.Security.Cryptography.X509Certificates;
 
 namespace APIKwickWash.Controllers
 {
@@ -53,6 +55,7 @@ namespace APIKwickWash.Controllers
         }
         public string Post([FromBody]Createplaceorder data)
         {
+            System.Text.StringBuilder lslog = new System.Text.StringBuilder();
             try
             {
                 TimeZoneInfo INDIAN_ZONE = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
@@ -120,6 +123,41 @@ namespace APIKwickWash.Controllers
                 }
                 if (res == "1")
                 {
+
+                    string query_get = "SELECT TOP 1 ORDERID FROM TBL.ORDERS WHERE CUSERID='" + data.CUserid + "' ORDER BY ORDERID DESC  SELECT MOBILE FROM TBL.PROFILE WHERE USERID='" + data.CUserid + "'";
+                    DataSet ds_getOrderId = Database.get_DataSet(query_get);
+                    if (ds_getOrderId.Tables[0].Rows.Count > 0)
+                    {
+                        lslog.AppendLine("ORDERID :" + ds_getOrderId.Tables[0].Rows[0]["ORDERID"].ToString());
+                        lslog.AppendLine("MOBILE :" + ds_getOrderId.Tables[1].Rows[0]["MOBILE"].ToString());
+                        //Start SMS API Intergration
+                        //string smsMessage = "Thank+you+for+Ordering+your+laundry+with+KwickWash.Your+Order+no+" + ds_getOrderId.Tables[0].Rows[0]["ORDERID"].ToString() + "+is+currently+being+processed+and+will+be+Picked+up+in+30+minutes.";
+                        //string sendSMSUri = "https://m1.sarv.com/api/v2.0/sms_campaign.php?token=705915705611ff6c4c5f9d8.90022694&user_id=63515991&route=TR&template_id=5568&sender_id=JKWASH&language=EN&template="+ smsMessage.ToString() + "&contact_numbers=" + ds_getOrderId.Tables[1].Rows[0]["MOBILE"].ToString();
+
+                        string sendSMSAPI = "https://m1.sarv.com/api/v2.0/sms_campaign.php?token=705915705611ff6c4c5f9d8.90022694&user_id=63515991&route=TR&template_id=5568&sender_id=JKWASH&language=EN&template=Thank+you+for+Ordering+your+laundry+with+KwickWash.+Your+Order+no+" + ds_getOrderId.Tables[0].Rows[0]["ORDERID"].ToString() + "+is+currently+being+processed+and+will+be+Picked+up+in+30+minutes.&contact_numbers=" + ds_getOrderId.Tables[1].Rows[0]["MOBILE"].ToString() + "";
+
+                        lslog.AppendLine("SMSAPI : " + sendSMSAPI);
+
+                        //Create HTTPWebrequest  
+                        HttpWebRequest httpWReq = (HttpWebRequest)WebRequest.Create(sendSMSAPI);
+
+                        //Specify post method  
+                        httpWReq.Method = "POST";
+                        httpWReq.ContentType = "application/x-www-form-urlencoded";
+                        //Get the response  
+                        httpWReq.Timeout = 10000;
+
+                        HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
+                        StreamReader reader = new StreamReader(response.GetResponseStream());
+                        string responseString = reader.ReadToEnd();
+
+                        //Close the response  
+                        reader.Close();
+
+                        response.Close();
+                    }
+
+
                     int rest = Database.Dashboard("ttlOrders", "1", data.SUserid);
                     rest = Database.Dashboard("ttlOrderPending", "1", data.SUserid);
                     rest = Database.Dashboard("ttlPayments", ttlAmount.ToString(), data.SUserid);
@@ -136,7 +174,7 @@ namespace APIKwickWash.Controllers
             }
             catch (Exception ex)
             {
-                return "-1";
+                return "-1" + lslog.ToString();
             }
         }
     }

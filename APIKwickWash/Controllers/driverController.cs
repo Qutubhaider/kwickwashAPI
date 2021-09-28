@@ -45,6 +45,21 @@ namespace APIKwickWash.Controllers
             return driver;
         }
 
+        public IEnumerable<driver> GetDriver(int id,string val,string val2)
+        {
+            string query = "select * from tbl.driver where userid='" + id.ToString() + "' and status='1'";
+            DataTable dt = Database.get_DataTable(query);
+            List<driver> driver = new List<Models.driver>(dt.Rows.Count);
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    driver.Add(new Readdriver(dr));
+                }
+            }
+            return driver;
+        }
+
 
 
         public IEnumerable<driver> Getdriver(string mobile, string shopUserid)
@@ -79,14 +94,12 @@ namespace APIKwickWash.Controllers
             {
                 string query_profile = "", query_login = "", password = "", roles = "", upLineId = "", sqlQuery = "", res = "";
                 int res1 = 0;
+                string shopId = "0";
                 if (values.profileId == 0)
                 {
-
                     password = "pass@123";
                     roles = "10";
                     upLineId = "0";
-
-                    string shopId = "0";
                     if (values.shopUserId == "0")
                     {
                         string queryShop = "select shopId from tbl.area where areaId='" + values.areaId + "'";
@@ -196,6 +209,7 @@ namespace APIKwickWash.Controllers
 
                 if (res == "1" || res1 == 1)
                 {
+                    int rest = Database.Dashboard("ttlDeliveryPending", "1", shopId);
                     return "1";
                 }
                 else
