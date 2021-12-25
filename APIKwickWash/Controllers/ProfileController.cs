@@ -91,6 +91,7 @@ namespace APIKwickWash.Controllers
         {
             try
             {
+                bool flgIsNew = true;
                 string query_profile = "", query_login = "", password = "", roles = "", upLineId = "", sqlQuery = "", res = "";
                 int res1 = 0;
                 if (values.profileId == 0)
@@ -105,6 +106,13 @@ namespace APIKwickWash.Controllers
                             shopId = dsShopId.Tables[0].Rows[0]["shopId"].ToString();
                         }
                         password = values.password;
+
+                        string queryCity = "SELECT CITYNAME FROM TBL.CITY WHERE CITYID='" + values.city + "'";
+                        DataSet dsCity = Database.get_DataSet(queryCity);
+                        if(dsCity.Tables[0].Rows.Count>0)
+                        {
+                            values.city = dsCity.Tables[0].Rows[0]["CITYNAME"].ToString();
+                        }
                     }
                     else
                     {
@@ -130,6 +138,7 @@ namespace APIKwickWash.Controllers
                 }
                 else
                 {
+                    flgIsNew = false;
                     if (values.name != null)
                     {
                         sqlQuery += "name='" + values.name + "',";
@@ -218,28 +227,30 @@ namespace APIKwickWash.Controllers
                 {
                     if (res == "1")
                     {
+                        if (flgIsNew == true)
+                        {
 
+                            //Call Send SMS API  
+                            string sendSMSUri = "http://m1.sarv.com/api/v2.0/sms_campaign.php?token=705915705611ff6c4c5f9d8.90022694&user_id=63515991&route=TR&template_id=5571&sender_id=JKWASH&language=EN&template=Thank+you+for+sign+in+with+KwickWash+Laundry.+We+welcome+you+for+amazing+hygienic+services.&contact_numbers=" + values.mobile.ToString();
 
-                        //Call Send SMS API  
-                        string sendSMSUri = "http://m1.sarv.com/api/v2.0/sms_campaign.php?token=705915705611ff6c4c5f9d8.90022694&user_id=63515991&route=TR&template_id=5571&sender_id=JKWASH&language=EN&template=Thank+you+for+sign+in+with+KwickWash+Laundry.+We+welcome+you+for+amazing+hygienic+services.&contact_numbers=" + values.mobile.ToString();
+                            //Create HTTPWebrequest  
+                            HttpWebRequest httpWReq = (HttpWebRequest)WebRequest.Create(sendSMSUri);
 
-                        //Create HTTPWebrequest  
-                        HttpWebRequest httpWReq = (HttpWebRequest)WebRequest.Create(sendSMSUri);
-                       
-                        //Specify post method  
-                        httpWReq.Method = "POST";
-                        httpWReq.ContentType = "application/x-www-form-urlencoded";
-                        //Get the response  
-                        httpWReq.Timeout = 10000;
+                            //Specify post method  
+                            httpWReq.Method = "POST";
+                            httpWReq.ContentType = "application/x-www-form-urlencoded";
+                            //Get the response  
+                            httpWReq.Timeout = 10000;
 
-                        HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
-                        StreamReader reader = new StreamReader(response.GetResponseStream());
-                        string responseString = reader.ReadToEnd();
+                            HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
+                            StreamReader reader = new StreamReader(response.GetResponseStream());
+                            string responseString = reader.ReadToEnd();
 
-                        //Close the response  
-                        reader.Close();
+                            //Close the response  
+                            reader.Close();
 
-                        response.Close();
+                            response.Close();
+                        }
                     }
                     string userId = "";
                     if (values.shopUserId == "0")

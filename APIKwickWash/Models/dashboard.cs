@@ -58,4 +58,15 @@ namespace APIKwickWash.Models
             ttlDeliveryCompleted = dr["ttlDeliveryCompleted"].ToString();
         }
     }
+
+    public class MonthDashboard
+    {
+        public int? TotalCustomer { get; set; }
+        public int? TotalOrder { get; set; }
+        public int? TotalPendingOrder { get; set; }
+        public int? TotalCompletedOrder { get; set; }
+        public decimal? TotalRevenue { get; set; }
+        public decimal? TotalCollection { get; set; }
+        public decimal? TotalOutstanding { get; set; }
+    }
 }

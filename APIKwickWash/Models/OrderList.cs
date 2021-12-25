@@ -30,6 +30,11 @@ namespace APIKwickWash.Models
         public string addonQty { get; set; }
         public string addonPrice { get; set; }
         public string addonTotalPrice { get; set; }
+        public decimal? AMOUNT { get; set; }
+        public decimal? DISCOUNTAMOUNT { get; set; }
+        public decimal? SUBTOTAL { get; set; }
+        public decimal? GST { get; set; }
+        public decimal? PATABLEAMOUNT { get; set; }
 
     }
 
@@ -61,6 +66,11 @@ namespace APIKwickWash.Models
             addonQty = dr["Qty"].ToString();
             addonPrice = dr["Price"].ToString();
             addonTotalPrice = dr["TotalPrice"].ToString();
+            AMOUNT = Convert.ToDecimal(dr["AMOUNT"]);
+            DISCOUNTAMOUNT = Convert.ToDecimal(dr["DISCOUNTAMOUNT"]);
+            SUBTOTAL = Convert.ToDecimal(dr["SUBTOTAL"]);
+            GST = Convert.ToDecimal(dr["GST"]);
+            PATABLEAMOUNT = Convert.ToDecimal(dr["PATABLEAMOUNT"]);
         }
     }
 }

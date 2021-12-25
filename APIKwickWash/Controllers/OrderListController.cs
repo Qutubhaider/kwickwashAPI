@@ -19,13 +19,13 @@ namespace APIKwickWash.Controllers
             string query = "";
             if (id == 0)
             {
-                query = "select ad.ProdctName,ad.Qty,ad.Price,ad.TotalPrice,c.companyName,o.SUserid,o.ttlDiscount,o.ttlPayableAmount,o.paymentMode,o.deliveryStatus,o.orderId,o.invoiceNo,o.ttlQty,o.ttlAmount," +
+                query = "select o.AMOUNT,o.DISCOUNTAMOUNT,o.SUBTOTAL,o.GST,o.PATABLEAMOUNT, ad.ProdctName,ad.Qty,ad.Price,ad.TotalPrice,c.companyName,o.SUserid,o.ttlDiscount,o.ttlPayableAmount,o.paymentMode,o.deliveryStatus,o.orderId,o.invoiceNo,o.ttlQty,o.ttlAmount," +
                     "o.Status,p.name,p.mobile,o.orderDate,o.deliveryDate,o.OrderType,o.pickupRequest,o.dropRequest,o.pickupSlip from tbl.Orders o join tbl.profile p" +
                     " on p.userid = o.cuserid join tbl.CompanyProfile c on o.SUserid = c.Userid  left join tbl.OrderAddOn ad on ad.OrderId=o.orderId order by o.orderId desc";
             }
             else
             {
-                query = "select ad.ProdctName,ad.Qty,ad.Price,ad.TotalPrice,c.companyName,o.SUserid,o.ttlDiscount,o.ttlPayableAmount,o.paymentMode,o.deliveryStatus,o.orderId,o.invoiceNo,o.ttlQty,o.ttlAmount," +
+                query = "select o.AMOUNT,o.DISCOUNTAMOUNT,o.SUBTOTAL,o.GST,o.PATABLEAMOUNT,ad.ProdctName,ad.Qty,ad.Price,ad.TotalPrice,c.companyName,o.SUserid,o.ttlDiscount,o.ttlPayableAmount,o.paymentMode,o.deliveryStatus,o.orderId,o.invoiceNo,o.ttlQty,o.ttlAmount," +
                     "o.Status,p.name,p.mobile,o.orderDate,o.deliveryDate,o.OrderType,o.pickupRequest,o.dropRequest,o.pickupSlip from tbl.Orders o join tbl.profile p " +
                    "on p.userid=o.cuserid join tbl.CompanyProfile c on o.SUserid = c.Userid left join tbl.OrderAddOn ad on ad.OrderId=o.orderId where o.SUserid='" + id + "' order by o.orderId desc";
             }
@@ -43,7 +43,7 @@ namespace APIKwickWash.Controllers
 
         public List<OrderList> GetData(int orderId,string status)
         {
-            string query = "select ad.ProdctName,ad.Qty,ad.Price,ad.TotalPrice,c.companyName,o.SUserid,o.ttlDiscount,o.ttlPayableAmount,o.paymentMode,o.deliveryStatus,o.orderId,o.invoiceNo,o.ttlQty,o.ttlAmount," +
+            string query = "select o.AMOUNT,o.DISCOUNTAMOUNT,o.SUBTOTAL,o.GST,o.PATABLEAMOUNT,ad.ProdctName,ad.Qty,ad.Price,ad.TotalPrice,c.companyName,o.SUserid,o.ttlDiscount,o.ttlPayableAmount,o.paymentMode,o.deliveryStatus,o.orderId,o.invoiceNo,o.ttlQty,o.ttlAmount," +
                 "o.Status,p.name,p.mobile,o.orderDate,o.deliveryDate,o.OrderType,o.pickupRequest,o.dropRequest,o.pickupSlip from tbl.Orders o join tbl.profile p " +
                 "on p.userid=o.cuserid join tbl.CompanyProfile c on o.SUserid = c.Userid left join tbl.OrderAddOn ad on ad.OrderId=o.orderId where o.orderId='" + orderId + "' order by o.orderId desc";
             DataTable dt = Database.get_DataTable(query);
@@ -121,7 +121,7 @@ namespace APIKwickWash.Controllers
 
             }
 
-            query = "select ad.ProdctName,ad.Qty,ad.Price,ad.TotalPrice,c.companyName,o.SUserid,o.ttlDiscount,o.ttlPayableAmount,o.paymentMode,o.deliveryStatus,o.orderId,o.invoiceNo,o.ttlQty,o.ttlAmount," +
+            query = "select o.AMOUNT,o.DISCOUNTAMOUNT,o.SUBTOTAL,o.GST,o.PATABLEAMOUNT,ad.ProdctName,ad.Qty,ad.Price,ad.TotalPrice,c.companyName,o.SUserid,o.ttlDiscount,o.ttlPayableAmount,o.paymentMode,o.deliveryStatus,o.orderId,o.invoiceNo,o.ttlQty,o.ttlAmount," +
                         "o.Status,p.name,p.mobile,o.orderDate,o.deliveryDate,o.OrderType,o.pickupRequest,o.dropRequest,o.pickupSlip from tbl.Orders o join tbl.profile p" +
                         " on p.userid = o.cuserid join tbl.CompanyProfile c on o.SUserid = c.Userid  left join tbl.OrderAddOn ad on ad.OrderId=o.orderId  " + query_where + " order by o.orderId asc";
 
@@ -140,7 +140,7 @@ namespace APIKwickWash.Controllers
         public List<OrderList> GetOrderHistory(string orderId, string status, string cid)
         {
             string query = "";
-            query = "select ad.ProdctName,ad.Qty,ad.Price,ad.TotalPrice,c.companyName,o.SUserid,o.ttlDiscount,o.ttlPayableAmount,o.paymentMode,o.deliveryStatus,o.orderId,o.invoiceNo,o.ttlQty,o.ttlAmount," +
+            query = "select o.AMOUNT,o.DISCOUNTAMOUNT,o.SUBTOTAL,o.GST,o.PATABLEAMOUNT,ad.ProdctName,ad.Qty,ad.Price,ad.TotalPrice,c.companyName,o.SUserid,o.ttlDiscount,o.ttlPayableAmount,o.paymentMode,o.deliveryStatus,o.orderId,o.invoiceNo,o.ttlQty,o.ttlAmount," +
             "o.Status,p.name,p.mobile,o.orderDate,o.deliveryDate,o.OrderType,o.pickupRequest,o.dropRequest,o.pickupSlip from tbl.Orders o join tbl.profile p " +
             "on p.userid=o.cuserid join tbl.CompanyProfile c on o.SUserid = c.Userid left join tbl.OrderAddOn ad on ad.OrderId=o.orderId where o.CUserid='" + cid + "' order by o.orderId desc";
 
@@ -161,7 +161,7 @@ namespace APIKwickWash.Controllers
             List<OrderList> orderLists = new List<OrderList>();
             try
             {
-                string query = "select ad.ProdctName,ad.Qty,ad.Price,ad.TotalPrice,c.companyName,o.SUserid,o.ttlDiscount,o.ttlPayableAmount,o.paymentMode," +
+                string query = "select o.AMOUNT,o.DISCOUNTAMOUNT,o.SUBTOTAL,o.GST,o.PATABLEAMOUNT,ad.ProdctName,ad.Qty,ad.Price,ad.TotalPrice,c.companyName,o.SUserid,o.ttlDiscount,o.ttlPayableAmount,o.paymentMode," +
                     "o.deliveryStatus,o.orderId,o.invoiceNo,o.ttlQty,o.ttlAmount,o.Status,p.name,p.mobile,o.orderDate,o.deliveryDate,o.OrderType," +
                     "o.pickupRequest,o.dropRequest,o.pickupSlip from tbl.Orders o join tbl.profile p on p.userid=o.cuserid join tbl.CompanyProfile " +
                     "c on o.SUserid = c.Userid left join tbl.OrderAddOn ad on ad.OrderId=o.orderId where o.CUserid in (select userid from )" +

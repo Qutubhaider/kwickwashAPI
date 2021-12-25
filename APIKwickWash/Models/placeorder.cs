@@ -23,7 +23,7 @@ namespace APIKwickWash.Models
         public string orderQty { get; set; }
         public string status { get; set; }
         public string orderDate { get; set; }
-        public string deliveryDate { get; set; }
+        public DateTime deliveryDate { get; set; }
         public string OrderType { get; set; }
         public string pickupRequest { get; set; }
         public string dropRequest { get; set; }
