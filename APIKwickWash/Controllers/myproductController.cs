@@ -17,7 +17,7 @@ namespace APIKwickWash.Controllers
         // GET: myproduct
         public IEnumerable<myproduct> Get(int id)
         {
-            string queryProduct = "select  prodId,proId,srId,serviceName,productName,unit,price,proImg,status,myPrice,productCode,dropOffPrice,pickupDropPrice,productQty,minOrder,myPrice1 from tbl.myproduct where userid='" + id + "' and status='1'";
+            string queryProduct = "select  prodId,proId,srId,serviceName,productName,unit,price,proImg,status,myPrice,productCode,dropOffPrice,pickupDropPrice,productQty,minOrder,myPrice1 from tbl.myproduct where userid='" + id + "'";
             DataTable dt = Database.get_DataTable(queryProduct);
             List<myproduct> product = new List<Models.myproduct>(dt.Rows.Count);
             if (dt.Rows.Count > 0)
@@ -33,7 +33,7 @@ namespace APIKwickWash.Controllers
 
         public IEnumerable<myproduct> GetProductList(int id,string sid)
         {
-            string queryProduct = "select top 16 prodId,proId,srId,serviceName,productName,unit,price,proImg,status,myPrice,productCode,dropOffPrice,pickupDropPrice,productQty,minOrder,myPrice1 from tbl.myproduct where userid='" + id + "' and status='1'";
+            string queryProduct = "select top 16 prodId,proId,srId,serviceName,productName,unit,price,proImg,status,myPrice,productCode,dropOffPrice,pickupDropPrice,productQty,minOrder,myPrice1 from tbl.myproduct where userid='" + id + "'";
             DataTable dt = Database.get_DataTable(queryProduct);
             List<myproduct> product = new List<Models.myproduct>(dt.Rows.Count);
             if (dt.Rows.Count > 0)
@@ -52,7 +52,7 @@ namespace APIKwickWash.Controllers
             int curr = pageno;
             string pager = "";
             string queryProduct = "select prodId,proId,srId,serviceName,productName,unit,price,proImg,status,myPrice,productCode,dropOffPrice,pickupDropPrice," +
-                "productQty,minOrder,myPrice1 from tbl.myproduct where userid='" + uid + "' and srid='" + sid + "' and status='1'";
+                "productQty,minOrder,myPrice1 from tbl.myproduct where userid='" + uid + "' and srid='" + sid + "'";
             DataSet ds = Database.get_DataSet(queryProduct, "tbl.myproduct", curr, 16);
             DataTable dt = Database.get_DataTable(queryProduct);
             if (ds.Tables[0].Rows.Count != 0)

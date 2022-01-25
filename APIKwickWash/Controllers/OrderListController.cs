@@ -21,13 +21,13 @@ namespace APIKwickWash.Controllers
             {
                 query = "select o.AMOUNT,o.DISCOUNTAMOUNT,o.SUBTOTAL,o.GST,o.PATABLEAMOUNT, ad.ProdctName,ad.Qty,ad.Price,ad.TotalPrice,c.companyName,o.SUserid,o.ttlDiscount,o.ttlPayableAmount,o.paymentMode,o.deliveryStatus,o.orderId,o.invoiceNo,o.ttlQty,o.ttlAmount," +
                     "o.Status,p.name,p.mobile,o.orderDate,o.deliveryDate,o.OrderType,o.pickupRequest,o.dropRequest,o.pickupSlip from tbl.Orders o join tbl.profile p" +
-                    " on p.userid = o.cuserid join tbl.CompanyProfile c on o.SUserid = c.Userid  left join tbl.OrderAddOn ad on ad.OrderId=o.orderId order by o.orderId desc";
+                    " on p.userid = o.cuserid join tbl.CompanyProfile c on o.SUserid = c.Userid  left join tbl.OrderAddOn ad on ad.OrderId=o.orderId WHERE o.deliveryStatus!='Delivered' AND o.Status!='Paid' order by o.orderId desc";
             }
             else
             {
                 query = "select o.AMOUNT,o.DISCOUNTAMOUNT,o.SUBTOTAL,o.GST,o.PATABLEAMOUNT,ad.ProdctName,ad.Qty,ad.Price,ad.TotalPrice,c.companyName,o.SUserid,o.ttlDiscount,o.ttlPayableAmount,o.paymentMode,o.deliveryStatus,o.orderId,o.invoiceNo,o.ttlQty,o.ttlAmount," +
                     "o.Status,p.name,p.mobile,o.orderDate,o.deliveryDate,o.OrderType,o.pickupRequest,o.dropRequest,o.pickupSlip from tbl.Orders o join tbl.profile p " +
-                   "on p.userid=o.cuserid join tbl.CompanyProfile c on o.SUserid = c.Userid left join tbl.OrderAddOn ad on ad.OrderId=o.orderId where o.SUserid='" + id + "' order by o.orderId desc";
+                   "on p.userid=o.cuserid join tbl.CompanyProfile c on o.SUserid = c.Userid left join tbl.OrderAddOn ad on GetOrderReportad.OrderId=o.orderId where o.SUserid='" + id + "' AND  o.deliveryStatus!='Delivered' AND o.Status!='Paid' order by o.orderId desc";
             }
             DataTable dt = Database.get_DataTable(query);
             List<OrderList> OrderList = new List<Models.OrderList>(dt.Rows.Count);

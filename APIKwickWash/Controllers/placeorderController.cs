@@ -62,7 +62,7 @@ namespace APIKwickWash.Controllers
                 DateTime dateTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, INDIAN_ZONE);
                 string query_Exc = " declare @orderId bigint select @orderId=IDENT_CURRENT('tbl.[Orders]')";
                 double ttlQty = 0, ttlAmount = 0.0, couponValue = 0.0, discountAmt = 0.0, payableAmt = 0.0;
-                string query_Order = "", query_delete_Cart = "", res = "", queryAddon = "";
+                string query_Order = "", query_delete_Cart = "", res = "", queryAddon = "", queryCustomerLedger = "";
                 Random rnd = new Random();
                 string invoiceno = GenerateRandomInt(rnd).ToString();
                 string query_Check = "select * from tbl.cart where CUserid='" + data.CUserid + "' and SUserid='" + data.SUserid + "'";
@@ -102,7 +102,7 @@ namespace APIKwickWash.Controllers
                         + "','" + data.paymentMode + "','" + data.deliveryStatus + "','" + data.useCoupon + "','" + data.did + "','" + data.dname + "')";
 
                     //-- Addon Table Query
-                    if (data.AddonTotalPrice != "0")
+                    if (data.AddonTotalPrice != "")
                     {
                         queryAddon = "  declare @orderId bigint select @orderId=IDENT_CURRENT('tbl.[Orders]')";
                         queryAddon += " insert into tbl.OrderAddOn (OrderId,ProdctName,Qty,Price,TotalPrice) values (@orderId,'" + data.AddonProduct + "','" + data.AddonQty + "','" + data.AddonPrice + "','" + data.AddonTotalPrice + "')";
@@ -111,43 +111,70 @@ namespace APIKwickWash.Controllers
                     {
                         queryAddon = "0";
                     }
+
+                    //--Update Ledger
+
+                    double balance = 0;
+                    string query_getBalance = "select balance from tbl.profile where userid='" + data.CUserid + "'";
+                    DataSet ds_balance = Database.get_DataSet(query_getBalance);
+                    if (ds_balance.Tables[0].Rows.Count > 0)
+                    {
+                        balance = Convert.ToDouble(ds_balance.Tables[0].Rows[0]["balance"]);
+                    }
+
+                    double receivedAmt = Convert.ToDouble(data.AdvanceAmount);
+                    double TotalBalace = balance + receivedAmt;
+                    double AvaialbeBalance = TotalBalace - Convert.ToDouble(payableAmt);
+
+
+                    queryCustomerLedger = "  declare @orderId bigint select @orderId=IDENT_CURRENT('tbl.[Orders]')";
+                    queryCustomerLedger += "update tbl.Profile set Balance='" + AvaialbeBalance + "' where userId='" + data.CUserid + "'";
+                    queryCustomerLedger += "INSERT INTO tblCustomerLedger (CustomerId,ShopId,OrderNo,EntryDate,Decsription,DebiteAmount,CreditAmount,Balance,PreviousBalanceAmount) VALUES " +
+                        " ('" + data.CUserid + "','" + data.SUserid + "',@orderId,'" + dateTime.ToString() + "','','" + payableAmt
+                        + "','" + receivedAmt + "','" + AvaialbeBalance + "','" + balance + "')";
+                    if (TotalBalace >= payableAmt)
+                    {
+                        //queryCustomerLedger += " UPDATE tbl.Orders SET Status='Paid', paymentMode='Cash' WHERE orderId=@orderId";
+                        queryCustomerLedger += " UPDATE tbl.Orders SET Status='Paid', paymentMode='Cash' WHERE CUserid='" + data.CUserid + "'";
+                    }
+
+                    //
                 }
                 
                 if (queryAddon!="0")
                 {
-                    res = Database.Execute_Transaction(query_Order, query_Exc, query_delete_Cart, queryAddon);
+                    res = Database.Execute_Transaction(query_Order, query_Exc, query_delete_Cart, queryAddon, queryCustomerLedger);
                 }
                 else
                 {
-                    res = Database.Execute_Transaction(query_Order, query_Exc, query_delete_Cart);
+                    res = Database.Execute_Transaction(query_Order, query_Exc, query_delete_Cart, queryCustomerLedger);
                 }
                 if (res == "1")
                 {
 
-                    string query_get = "SELECT TOP 1 ORDERID FROM TBL.ORDERS WHERE SUSERID='" + data.SUserid + "' ORDER BY ORDERID DESC  SELECT MOBILE FROM TBL.PROFILE WHERE USERID='" + data.CUserid + "'";
+                    string query_get = "SELECT TOP 1 ORDERID FROM TBL.ORDERS WHERE SUSERID='" + data.SUserid + "' ORDER BY ORDERID DESC  SELECT MOBILE,NAME,flgIsSMS FROM TBL.PROFILE WHERE USERID='" + data.CUserid + "'";
                     DataSet ds_getOrderId = Database.get_DataSet(query_get);
                     if (ds_getOrderId.Tables[0].Rows.Count > 0)
-                    {
-                        lslog.AppendLine("ORDERID :" + ds_getOrderId.Tables[0].Rows[0]["ORDERID"].ToString());
-                        lslog.AppendLine("MOBILE :" + ds_getOrderId.Tables[1].Rows[0]["MOBILE"].ToString());
-                      
-                        //string smsMessage = "Thank+you+for+Ordering+your+laundry+with+KwickWash.Your+Order+no+" + ds_getOrderId.Tables[0].Rows[0]["ORDERID"].ToString() + "+is+currently+being+processed+and+will+be+Picked+up+in+30+minutes.";
-                        //string sendSMSUri = "https://m1.sarv.com/api/v2.0/sms_campaign.php?token=705915705611ff6c4c5f9d8.90022694&user_id=63515991&route=TR&template_id=5568&sender_id=JKWASH&language=EN&template=" + smsMessage.ToString() + "&contact_numbers=" + ds_getOrderId.Tables[1].Rows[0]["MOBILE"].ToString();
-
-                        string sendSMSAPI = "https://m1.sarv.com/api/v2.0/sms_campaign.php?token=705915705611ff6c4c5f9d8.90022694&user_id=63515991&route=TR&template_id=5568&sender_id=JKWASH&language=EN&template=Thank+you+for+Ordering+your+laundry+with+KwickWash.+Your+Order+no+XXXX+is+currently+being+processed+and+will+be+Picked+up+in+30+minutes.&contact_numbers=7004282924";
-                        sendSMSAPI = sendSMSAPI.Replace("XXXX", ds_getOrderId.Tables[0].Rows[0]["ORDERID"].ToString());
-                        sendSMSAPI = sendSMSAPI.Replace("7004282924", ds_getOrderId.Tables[1].Rows[0]["MOBILE"].ToString());
-                        lslog.AppendLine("SMSAPI : " + sendSMSAPI);
-                        HttpWebRequest httpWReq = (HttpWebRequest)WebRequest.Create(sendSMSAPI);
-                        httpWReq.Method = "POST";
-                        httpWReq.ContentType = "application/x-www-form-urlencoded";
-                        httpWReq.Timeout = 10000;
-                        HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
-                        StreamReader reader = new StreamReader(response.GetResponseStream());
-                        string responseString = reader.ReadToEnd();
-                        reader.Close();
-                        response.Close();
-
+                    {                      
+                        if (ds_getOrderId.Tables[1].Rows[0]["flgIsSMS"].ToString() == "1" || ds_getOrderId.Tables[1].Rows[0]["flgIsSMS"].ToString() == "True")
+                        {
+                            string sendSMSAPI = "http://m1.sarv.com/api/v2.0/sms_campaign.php?token=705915705611ff6c4c5f9d8.90022694&user_id=63515991&route=TR&template_id=6745&sender_id=KWwash&language=EN&template=Dear+Qutub+thank+you+for+placing+order+with+KwickWash+Laundry+your+Order+No+1122+Dated+121212+Estimated+Cost+2022.+Stay+Updated+with+your+order+status+after+login+in+App+or+Website+at+www.kwickwash.in&contact_numbers=7277527789";
+                            sendSMSAPI = sendSMSAPI.Replace("Qutub", ds_getOrderId.Tables[1].Rows[0]["NAME"].ToString());
+                            sendSMSAPI = sendSMSAPI.Replace("1122", ds_getOrderId.Tables[0].Rows[0]["ORDERID"].ToString());
+                            sendSMSAPI = sendSMSAPI.Replace("7277527789", ds_getOrderId.Tables[1].Rows[0]["MOBILE"].ToString());
+                            sendSMSAPI = sendSMSAPI.Replace("2022", "Rs." + payableAmt.ToString());
+                            sendSMSAPI = sendSMSAPI.Replace("121212", DateTime.Now.ToString("dd/MMM/yyyy HH:mm tt"));
+                            lslog.AppendLine("SMSAPI : " + sendSMSAPI);
+                            HttpWebRequest httpWReq = (HttpWebRequest)WebRequest.Create(sendSMSAPI);
+                            httpWReq.Method = "POST";
+                            httpWReq.ContentType = "application/x-www-form-urlencoded";
+                            httpWReq.Timeout = 10000;
+                            HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
+                            StreamReader reader = new StreamReader(response.GetResponseStream());
+                            string responseString = reader.ReadToEnd();
+                            reader.Close();
+                            response.Close();
+                        }
                     }
 
                     int rest = Database.Dashboard("ttlOrders", "1", data.SUserid);

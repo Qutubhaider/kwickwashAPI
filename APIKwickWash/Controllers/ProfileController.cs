@@ -56,11 +56,11 @@ namespace APIKwickWash.Controllers
             string query;
             if (mobile.ToString() == "0")
             {
-                query = "select * from tbl.profile where uplineid='" + shopUserid + "'";
+                query = "select * from tbl.profile where uplineid='" + shopUserid + "' order by profileid desc";
             }
             else
             {
-                query = "select * from tbl.profile where mobile='" + mobile + "'";
+                query = "select * from tbl.profile where mobile='" + mobile + "' order by profileid desc";
             }
             DataTable dt = Database.get_DataTable(query);
             List<Profile> profile = new List<Models.Profile>(dt.Rows.Count);
@@ -87,6 +87,10 @@ namespace APIKwickWash.Controllers
             public int Status { get; set; }
         }
 
+        public static int GenerateRandomInt(Random rnd)
+        {
+            return rnd.Next();
+        }
         public string Post([FromBody] CreateProfile values)
         {
             try
@@ -117,7 +121,8 @@ namespace APIKwickWash.Controllers
                     else
                     {
                         shopId = values.shopUserId;
-                        password = "pass@123";
+                        Random rnd = new Random();
+                        password = GenerateRandomInt(rnd).ToString(); ;
                     }
 
 
@@ -130,10 +135,10 @@ namespace APIKwickWash.Controllers
 
                     query_profile = "declare @Userid bigint select @Userid=IDENT_CURRENT('tbl.login')";
 
-                    query_profile += "insert into tbl.Profile(userId,name,emailId,mobile,address,state,city,pincode,companyLogo,upLineId,Location) values " +
+                    query_profile += "insert into tbl.Profile(userId,name,emailId,mobile,address,state,city,pincode,companyLogo,upLineId,Location,balance) values " +
                         "(@Userid,'" + cname.ToString() + "','" + values.emailId + "','" + values.mobile + "','" + values.address
                         + "','" + values.state + "','" + values.city + "','" + values.pincode + "','" + values.companyLogo + "','" + shopId
-                        + "','" + values.Location + "')";
+                        + "','" + values.Location + "','0')";
                     res = Database.Execute_Transaction(query_login, query_profile);
                 }
                 else
@@ -230,25 +235,19 @@ namespace APIKwickWash.Controllers
                         if (flgIsNew == true)
                         {
 
-                            //Call Send SMS API  
-                            string sendSMSUri = "http://m1.sarv.com/api/v2.0/sms_campaign.php?token=705915705611ff6c4c5f9d8.90022694&user_id=63515991&route=TR&template_id=5571&sender_id=JKWASH&language=EN&template=Thank+you+for+sign+in+with+KwickWash+Laundry.+We+welcome+you+for+amazing+hygienic+services.&contact_numbers=" + values.mobile.ToString();
-
-                            //Create HTTPWebrequest  
-                            HttpWebRequest httpWReq = (HttpWebRequest)WebRequest.Create(sendSMSUri);
-
-                            //Specify post method  
+                            string sendSMSAPI = "https://m1.sarv.com/api/v2.0/sms_campaign.php?token=705915705611ff6c4c5f9d8.90022694&user_id=63515991&route=TR&template_id=6746&sender_id=KWwash&language=EN&template=Dear+Qutub+thank+you+for+choosing+Kwickwash+Your+User+ID+UUUU+and+Password+PPPP.+Download+our+App+Or+Order+Online+for+your+Laundry+at+www.kwickwash.in&contact_numbers=7277527789";
+                            sendSMSAPI = sendSMSAPI.Replace("Qutub", values.name);
+                            sendSMSAPI = sendSMSAPI.Replace("UUUU", values.mobile);
+                            sendSMSAPI = sendSMSAPI.Replace("7277527789", values.mobile);
+                            sendSMSAPI = sendSMSAPI.Replace("PPPP",password);
+                            HttpWebRequest httpWReq = (HttpWebRequest)WebRequest.Create(sendSMSAPI);
                             httpWReq.Method = "POST";
                             httpWReq.ContentType = "application/x-www-form-urlencoded";
-                            //Get the response  
                             httpWReq.Timeout = 10000;
-
                             HttpWebResponse response = (HttpWebResponse)httpWReq.GetResponse();
                             StreamReader reader = new StreamReader(response.GetResponseStream());
                             string responseString = reader.ReadToEnd();
-
-                            //Close the response  
                             reader.Close();
-
                             response.Close();
                         }
                     }

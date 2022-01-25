@@ -19,9 +19,9 @@ namespace APIKwickWash
         public static void Register(HttpConfiguration config)
         {
             //Web API configuration and services
-           
+
             //Core   
-            EnableCorsAttribute cors = new EnableCorsAttribute("*", "*", "*");
+            EnableCorsAttribute cors = new EnableCorsAttribute("*", headers: "*", methods: "*");
             config.EnableCors(cors);
 
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;

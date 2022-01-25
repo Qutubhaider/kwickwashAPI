@@ -126,4 +126,3 @@ E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\obj\Debug\A
 E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\obj\Debug\APIKwickWash.csproj.CopyComplete
 E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\obj\Debug\APIKwickWash.dll
 E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\obj\Debug\APIKwickWash.pdb
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\obj\Debug\APIKwickWash.csproj.AssemblyReference.cache
