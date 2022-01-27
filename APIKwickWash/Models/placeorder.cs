@@ -41,6 +41,8 @@ namespace APIKwickWash.Models
         public string AddonPrice { get; set; }
         public string AddonTotalPrice { get; set; }
         public string AdvanceAmount { get; set; }
+        public string TranType { get; set; }
+
     }
 
     public class Createplaceorder: placeorder
