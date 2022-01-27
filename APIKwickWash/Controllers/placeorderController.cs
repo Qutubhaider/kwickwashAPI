@@ -130,7 +130,7 @@ namespace APIKwickWash.Controllers
                     queryCustomerLedger = "  declare @orderId bigint select @orderId=IDENT_CURRENT('tbl.[Orders]')";
                     queryCustomerLedger += "update tbl.Profile set Balance='" + AvaialbeBalance + "' where userId='" + data.CUserid + "'";
                     queryCustomerLedger += "INSERT INTO tblCustomerLedger (CustomerId,ShopId,OrderNo,EntryDate,Decsription,DebiteAmount,CreditAmount,Balance,PreviousBalanceAmount) VALUES " +
-                        " ('" + data.CUserid + "','" + data.SUserid + "',@orderId,'" + dateTime.ToString() + "','','" + payableAmt
+                        " ('" + data.CUserid + "','" + data.SUserid + "',@orderId,'" + dateTime.ToString() + "',''" + data.TranType + ",'" + payableAmt
                         + "','" + receivedAmt + "','" + AvaialbeBalance + "','" + balance + "')";
                     if (TotalBalace >= payableAmt)
                     {
