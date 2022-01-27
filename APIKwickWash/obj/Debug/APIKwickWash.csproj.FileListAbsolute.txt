@@ -1,128 +1,192 @@
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\APIKwickWash.dll.config
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\APIKwickWash.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\APIKwickWash.pdb
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\csc.exe
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\csc.exe.config
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\csc.rsp
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\csi.exe
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\csi.rsp
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\Microsoft.CodeAnalysis.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\Microsoft.CSharp.Core.targets
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\Microsoft.VisualBasic.Core.targets
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\System.AppContext.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\System.Collections.Immutable.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\System.Diagnostics.StackTrace.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\System.IO.FileSystem.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\System.IO.FileSystem.Primitives.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\System.Reflection.Metadata.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\vbc.exe
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\vbc.exe.config
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\vbc.rsp
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\VBCSCompiler.exe
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\VBCSCompiler.exe.config
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\Antlr3.Runtime.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\Microsoft.Web.Infrastructure.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\Newtonsoft.Json.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Net.Http.Formatting.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Cors.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Helpers.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Http.Cors.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Http.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Http.WebHost.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Mvc.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Optimization.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Razor.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.WebPages.Deployment.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.WebPages.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.WebPages.Razor.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\WebGrease.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Http.Cors.xml
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\Newtonsoft.Json.xml
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Net.Http.Formatting.xml
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Helpers.xml
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Http.xml
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Http.WebHost.xml
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Mvc.xml
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Optimization.xml
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Razor.xml
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.WebPages.xml
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.WebPages.Deployment.xml
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.WebPages.Razor.xml
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\Antlr3.Runtime.pdb
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\obj\Debug\APIKwickWash.csproj.CopyComplete
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\obj\Debug\APIKwickWash.dll
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\obj\Debug\APIKwickWash.pdb
-D:\Zidux Way2Finder\2020\July\Kwickteam\APIKwickWash\APIKwickWash\obj\Debug\APIKwickWash.csprojAssemblyReference.cache
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\APIKwickWash.dll.config
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\APIKwickWash.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\APIKwickWash.pdb
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\csc.exe
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\csc.exe.config
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\csc.rsp
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\csi.exe
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\csi.rsp
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\Microsoft.CodeAnalysis.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\Microsoft.CSharp.Core.targets
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\Microsoft.VisualBasic.Core.targets
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\System.AppContext.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\System.Collections.Immutable.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\System.Diagnostics.StackTrace.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\System.IO.FileSystem.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\System.IO.FileSystem.Primitives.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\System.Reflection.Metadata.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\vbc.exe
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\vbc.exe.config
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\vbc.rsp
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\VBCSCompiler.exe
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\roslyn\VBCSCompiler.exe.config
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\Antlr3.Runtime.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\Microsoft.Web.Infrastructure.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\Newtonsoft.Json.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Net.Http.Formatting.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Cors.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Helpers.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Http.Cors.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Http.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Http.WebHost.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Mvc.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Optimization.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Razor.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.WebPages.Deployment.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.WebPages.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.WebPages.Razor.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\WebGrease.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Http.Cors.xml
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\Newtonsoft.Json.xml
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Net.Http.Formatting.xml
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Helpers.xml
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Http.xml
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Http.WebHost.xml
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Mvc.xml
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Optimization.xml
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.Razor.xml
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.WebPages.xml
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.WebPages.Deployment.xml
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\System.Web.WebPages.Razor.xml
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\Antlr3.Runtime.pdb
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\obj\Debug\APIKwickWash.csproj.CoreCompileInputs.cache
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\obj\Debug\APIKwickWash.csproj.CopyComplete
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\obj\Debug\APIKwickWash.dll
-E:\Qutub Development\2020\7-July\Kwickteam\APIKwickWash\APIKwickWash\obj\Debug\APIKwickWash.pdb
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/APIKwickWash.dll.config
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/APIKwickWash.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/APIKwickWash.pdb
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/csc.exe
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/csc.exe.config
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/csc.rsp
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/csi.exe
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/csi.rsp
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/Microsoft.CodeAnalysis.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/Microsoft.CodeAnalysis.Scripting.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/Microsoft.CSharp.Core.targets
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/Microsoft.DiaSymReader.Native.amd64.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/Microsoft.DiaSymReader.Native.x86.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/Microsoft.VisualBasic.Core.targets
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/System.AppContext.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/System.Collections.Immutable.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/System.Diagnostics.StackTrace.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/System.IO.FileSystem.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/System.IO.FileSystem.Primitives.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/System.Reflection.Metadata.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/vbc.exe
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/vbc.exe.config
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/vbc.rsp
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/VBCSCompiler.exe
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/VBCSCompiler.exe.config
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/Antlr3.Runtime.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/Microsoft.Web.Infrastructure.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/Newtonsoft.Json.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Net.Http.Formatting.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Cors.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Helpers.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Http.Cors.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Http.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Http.WebHost.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Mvc.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Optimization.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Razor.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.WebPages.Deployment.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.WebPages.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.WebPages.Razor.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/WebGrease.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Http.Cors.xml
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/Newtonsoft.Json.xml
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Net.Http.Formatting.xml
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Helpers.xml
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Http.xml
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Http.WebHost.xml
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Mvc.xml
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Optimization.xml
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Razor.xml
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.WebPages.xml
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.WebPages.Deployment.xml
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.WebPages.Razor.xml
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/Antlr3.Runtime.pdb
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/obj/Debug/APIKwickWash.csproj.CopyComplete
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/obj/Debug/APIKwickWash.dll
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/obj/Debug/APIKwickWash.pdb
+D:/Zidux Way2Finder/2020/July/Kwickteam/APIKwickWash/APIKwickWash/obj/Debug/APIKwickWash.csprojAssemblyReference.cache
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/APIKwickWash.dll.config
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/APIKwickWash.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/APIKwickWash.pdb
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/csc.exe
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/csc.exe.config
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/csc.rsp
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/csi.exe
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/csi.rsp
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/Microsoft.CodeAnalysis.CSharp.Scripting.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/Microsoft.CodeAnalysis.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/Microsoft.CodeAnalysis.Scripting.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/Microsoft.CSharp.Core.targets
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/Microsoft.DiaSymReader.Native.amd64.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/Microsoft.DiaSymReader.Native.x86.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/Microsoft.VisualBasic.Core.targets
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/System.AppContext.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/System.Collections.Immutable.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/System.Diagnostics.StackTrace.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/System.IO.FileSystem.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/System.IO.FileSystem.Primitives.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/System.Reflection.Metadata.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/vbc.exe
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/vbc.exe.config
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/vbc.rsp
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/VBCSCompiler.exe
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/roslyn/VBCSCompiler.exe.config
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/Antlr3.Runtime.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/Microsoft.Web.Infrastructure.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/Newtonsoft.Json.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Net.Http.Formatting.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Cors.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Helpers.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Http.Cors.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Http.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Http.WebHost.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Mvc.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Optimization.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Razor.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.WebPages.Deployment.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.WebPages.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.WebPages.Razor.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/WebGrease.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Http.Cors.xml
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/Newtonsoft.Json.xml
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Net.Http.Formatting.xml
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Helpers.xml
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Http.xml
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Http.WebHost.xml
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Mvc.xml
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Optimization.xml
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.Razor.xml
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.WebPages.xml
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.WebPages.Deployment.xml
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/System.Web.WebPages.Razor.xml
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/Antlr3.Runtime.pdb
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/obj/Debug/APIKwickWash.csproj.CoreCompileInputs.cache
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/obj/Debug/APIKwickWash.csproj.CopyComplete
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/obj/Debug/APIKwickWash.dll
+E:/Qutub Development/2020/7-July/Kwickteam/APIKwickWash/APIKwickWash/obj/Debug/APIKwickWash.pdb
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/APIKwickWash.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/APIKwickWash.pdb
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/roslyn/csc.exe
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/roslyn/csc.exe.config
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/roslyn/csc.rsp
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/roslyn/csi.exe
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/roslyn/csi.rsp
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/roslyn/Microsoft.CodeAnalysis.CSharp.Scripting.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/roslyn/Microsoft.CodeAnalysis.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/roslyn/Microsoft.CodeAnalysis.Scripting.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/roslyn/Microsoft.CSharp.Core.targets
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/roslyn/Microsoft.DiaSymReader.Native.amd64.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/roslyn/Microsoft.DiaSymReader.Native.x86.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/roslyn/Microsoft.VisualBasic.Core.targets
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/roslyn/System.AppContext.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/roslyn/System.Collections.Immutable.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/roslyn/System.Diagnostics.StackTrace.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/roslyn/System.IO.FileSystem.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/roslyn/System.IO.FileSystem.Primitives.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/roslyn/System.Reflection.Metadata.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/roslyn/vbc.exe
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/roslyn/vbc.exe.config
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/roslyn/vbc.rsp
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/roslyn/VBCSCompiler.exe
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/roslyn/VBCSCompiler.exe.config
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/Antlr3.Runtime.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/Microsoft.Web.Infrastructure.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/Newtonsoft.Json.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/System.Net.Http.Formatting.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/System.Web.Cors.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/System.Web.Helpers.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/System.Web.Http.Cors.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/System.Web.Http.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/System.Web.Http.WebHost.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/System.Web.Mvc.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/System.Web.Optimization.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/System.Web.Razor.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/System.Web.WebPages.Deployment.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/System.Web.WebPages.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/System.Web.WebPages.Razor.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/WebGrease.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/System.Web.Http.Cors.xml
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/Newtonsoft.Json.xml
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/System.Net.Http.Formatting.xml
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/System.Web.Helpers.xml
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/System.Web.Http.xml
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/System.Web.Http.WebHost.xml
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/System.Web.Mvc.xml
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/System.Web.Optimization.xml
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/System.Web.Razor.xml
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/System.Web.WebPages.xml
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/System.Web.WebPages.Deployment.xml
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/System.Web.WebPages.Razor.xml
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/Antlr3.Runtime.pdb
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/obj/Debug/APIKwickWash.csproj.AssemblyReference.cache
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/obj/Debug/APIKwickWash.csproj.CoreCompileInputs.cache
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/obj/Debug/APIKwickWash.csproj.CopyComplete
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/obj/Debug/APIKwickWash.dll
+/Users/qutubhaider/Projects/kwickwashAPI/APIKwickWash/obj/Debug/APIKwickWash.pdb
