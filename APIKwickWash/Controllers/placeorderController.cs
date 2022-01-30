@@ -99,7 +99,7 @@ namespace APIKwickWash.Controllers
                         "pickupRequest,dropRequest,pickupSlip,paymentMode,deliveryStatus,useCoupon,did,dname) values ('" + invoiceno + "','" + data.CUserid
                         + "','" + data.SUserid + "','" + ttlQty + "','" + ttlAmount + "','" + discountAmt + "','" + payableAmt + "','unpaid','" + dateTime.ToString()
                         + "','" + data.deliveryDate + "','" + data.OrderType + "','" + data.pickupRequest + "','" + data.dropRequest + "','" + data.pickupSlip
-                        + "','" + data.paymentMode + "','" + data.deliveryStatus + "','" + data.useCoupon + "','" + data.did + "','" + data.dname + "')";
+                        + "','" + data.TranType + "','" + data.deliveryStatus + "','" + data.useCoupon + "','" + data.did + "','" + data.dname + "')";
 
                     //-- Addon Table Query
                     if (data.AddonTotalPrice != "")
@@ -129,7 +129,7 @@ namespace APIKwickWash.Controllers
 
                     queryCustomerLedger = "  declare @orderId bigint select @orderId=IDENT_CURRENT('tbl.[Orders]')";
                     queryCustomerLedger += "update tbl.Profile set Balance='" + AvaialbeBalance + "' where userId='" + data.CUserid + "'";
-                    queryCustomerLedger += "INSERT INTO tblCustomerLedger (CustomerId,ShopId,OrderNo,EntryDate,Decsription,DebiteAmount,CreditAmount,Balance,PreviousBalanceAmount) VALUES " +
+                    queryCustomerLedger += "INSERT INTO tblCustomerLedgerss (CustomerId,ShopId,OrderNo,EntryDate,Decsription,DebiteAmount,CreditAmount,Balance,PreviousBalanceAmount) VALUES " +
                         " ('" + data.CUserid + "','" + data.SUserid + "',@orderId,'" + dateTime.ToString() + "','" + data.TranType + "','" + payableAmt
                         + "','" + receivedAmt + "','" + AvaialbeBalance + "','" + balance + "')";
                     if (TotalBalace >= payableAmt)
