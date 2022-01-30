@@ -54,43 +54,73 @@ namespace APIKwickWash.Controllers
                 DataSet dscounter = Database.get_DataSet(query_counter);
                 if (dscounter.Tables[0].Rows.Count > 0)
                 {
-                    TotalCustomer = Convert.ToInt32(dscounter.Tables[0].Rows[0]["TotalCustomer"]);
+                    if (dscounter.Tables[0].Rows[0]["TotalCustomer"] != DBNull.Value)
+                    {
+                        TotalCustomer = Convert.ToInt32(dscounter.Tables[0].Rows[0]["TotalCustomer"]);
+                    }
                 }
                 if (dscounter.Tables[1].Rows.Count > 0)
                 {
-                    ToatlService = Convert.ToInt32(dscounter.Tables[1].Rows[0]["ToatlService"]);
+                    if (dscounter.Tables[1].Rows[0]["ToatlService"] != DBNull.Value)
+                    {
+                        ToatlService = Convert.ToInt32(dscounter.Tables[1].Rows[0]["ToatlService"]);
+                    }
                 }
                 if (dscounter.Tables[2].Rows.Count > 0)
                 {
-                    TotalProduct = Convert.ToInt32(dscounter.Tables[2].Rows[0]["TotalProduct"]);
+                    if (dscounter.Tables[2].Rows[0]["TotalProduct"] != DBNull.Value)
+                    {
+                        TotalProduct = Convert.ToInt32(dscounter.Tables[2].Rows[0]["TotalProduct"]);
+                    }
                 }
                 if (dscounter.Tables[3].Rows.Count > 0)
                 {
-                    TotalOrder = Convert.ToInt32(dscounter.Tables[3].Rows[0]["TotalOrder"]);
+                    if (dscounter.Tables[3].Rows[0]["TotalOrder"] != DBNull.Value)
+                    {
+                        TotalOrder = Convert.ToInt32(dscounter.Tables[3].Rows[0]["TotalOrder"]);
+                    }
                 }
                 if (dscounter.Tables[4].Rows.Count > 0)
                 {
-                    TotalPendingOrder = Convert.ToInt32(dscounter.Tables[4].Rows[0]["TotalPendingOrder"]);
+                    if (dscounter.Tables[4].Rows[0]["TotalPendingOrder"] != DBNull.Value)
+                    {
+                        TotalPendingOrder = Convert.ToInt32(dscounter.Tables[4].Rows[0]["TotalPendingOrder"]);
+                    }
                 }
                 if (dscounter.Tables[5].Rows.Count > 0)
                 {
-                    TotalCompletedOrder = Convert.ToInt32(dscounter.Tables[5].Rows[0]["TotalCompletedOrder"]);
+                    if (dscounter.Tables[5].Rows[0]["TotalCompletedOrder"] != DBNull.Value)
+                    {
+                        TotalCompletedOrder = Convert.ToInt32(dscounter.Tables[5].Rows[0]["TotalCompletedOrder"]);
+                    }
                 }
                 if (dscounter.Tables[6].Rows.Count > 0)
                 {
-                    TotalRevenue = Convert.ToDouble(dscounter.Tables[6].Rows[0]["TotalRevenue"]);
+                    if (dscounter.Tables[6].Rows[0]["TotalRevenue"] != DBNull.Value)
+                    {
+                        TotalRevenue = Convert.ToDouble(dscounter.Tables[6].Rows[0]["TotalRevenue"]);
+                    }
                 }
                 if (dscounter.Tables[7].Rows.Count > 0)
                 {
-                    TotalCollection = Convert.ToDouble(dscounter.Tables[7].Rows[0]["TotalCollection"]);
+                    if (dscounter.Tables[7].Rows[0]["TotalCollection"] != DBNull.Value)
+                    {
+                        TotalCollection = Convert.ToDouble(dscounter.Tables[7].Rows[0]["TotalCollection"]);
+                    }
                 }
                 if (dscounter.Tables[8].Rows.Count > 0)
                 {
-                    TotalOutstanding = Convert.ToDouble(dscounter.Tables[8].Rows[0]["TotalOutstanding"]);
+                    if (dscounter.Tables[8].Rows[0]["TotalOutstanding"] != DBNull.Value)
+                    {
+                        TotalOutstanding = Convert.ToDouble(dscounter.Tables[8].Rows[0]["TotalOutstanding"]);
+                    }
                 }
                 if (dscounter.Tables[9].Rows.Count > 0)
                 {
-                    TotalDriver = Convert.ToInt32(dscounter.Tables[9].Rows[0]["TotalDriver"]);
+                    if (dscounter.Tables[9].Rows[0]["TotalDriver"] != DBNull.Value)
+                    {
+                        TotalDriver = Convert.ToInt32(dscounter.Tables[9].Rows[0]["TotalDriver"]);
+                    }
                 }
                 string query_update = "update tbl.ttlUserDashboard set ttlCustomer='" + TotalCustomer + "', ttlService='" + ToatlService
                     + "', ttlProduct='" + TotalProduct + "',ttlOrders='" + TotalOrder + "',ttlOrderPending='" + TotalPendingOrder
