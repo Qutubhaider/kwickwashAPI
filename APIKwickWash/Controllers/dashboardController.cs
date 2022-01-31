@@ -45,7 +45,7 @@ namespace APIKwickWash.Controllers
                " select count(*)as ToatlService from tbl.myservice where userid='" + id + "' " +
                " select count(*)as TotalProduct from tbl.myproduct where userid='" + id + "' " +
                " select count(*)as TotalOrder from tbl.orders where suserid='" + id + "' " +
-               " select count(*)as TotalPendingOrder from tbl.orders where deliverystatus='' and suserid='" + id + "'" +
+               " select count(*)as TotalPendingOrder from tbl.orders where deliverystatus!='Delivered' and suserid='" + id + "'" +
                " select count(*)as TotalCompletedOrder from tbl.orders where deliverystatus='Delivered' and suserid='" + id + "'" +
                " select sum(ttlPayableAmount)as TotalRevenue from tbl.orders where suserid='" + id + "'" +
                " select sum(ttlPayableAmount)as TotalCollection from tbl.orders where status='Paid' and suserid='" + id + "'" +
