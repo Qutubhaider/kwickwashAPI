@@ -29,6 +29,12 @@ namespace APIKwickWash.Models
         public string ttlDelivery { get; set; }
         public string ttlDeliveryPending { get; set; }
         public string ttlDeliveryCompleted { get; set; }
+        public int? Booked { get; set; }
+        public int? InProcess { get; set; }
+        public int? ReadyForDelivery { get; set; }
+        public int? DeliveredUnpaid { get; set; }
+        public int? DeliveredPaid { get; set; }
+
     }
 
     public class ReadDashboard:dashboard
@@ -56,6 +62,11 @@ namespace APIKwickWash.Models
             ttlDelivery = dr["ttlDelivery"].ToString();
             ttlDeliveryPending = dr["ttlDeliveryPending"].ToString();
             ttlDeliveryCompleted = dr["ttlDeliveryCompleted"].ToString();
+            Booked = Convert.ToInt32(dr["Booked"]);
+            InProcess = Convert.ToInt32(dr["InProcess"]);
+            ReadyForDelivery = Convert.ToInt32(dr["ReadyForDelivery"]);
+            DeliveredUnpaid = Convert.ToInt32(dr["DeliveredUnpaid"]);
+            DeliveredPaid = Convert.ToInt32(dr["DeliveredPaid"]);
         }
     }
 

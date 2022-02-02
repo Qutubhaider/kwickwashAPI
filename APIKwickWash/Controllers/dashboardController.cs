@@ -40,6 +40,7 @@ namespace APIKwickWash.Controllers
             if (dt.Rows.Count > 0)
             {
                 int TotalCustomer = 0, ToatlService = 0, TotalProduct = 0, TotalOrder = 0, TotalPendingOrder = 0, TotalCompletedOrder = 0, TotalDriver = 0;
+                int Booked = 0, InProcess = 0, ReadyForDelivery = 0, DeliveredUnpaid = 0, DeliveredPaid = 0;
                 double TotalRevenue = 0.0, TotalCollection = 0.0, TotalOutstanding = 0.0;
                 string query_counter = "select count(*) as TotalCustomer from tbl.Profile where uplineid='" + id + "'" +
                " select count(*)as ToatlService from tbl.myservice where userid='" + id + "' " +
@@ -50,7 +51,12 @@ namespace APIKwickWash.Controllers
                " select sum(ttlPayableAmount)as TotalRevenue from tbl.orders where suserid='" + id + "'" +
                " select sum(ttlPayableAmount)as TotalCollection from tbl.orders where status='Paid' and suserid='" + id + "'" +
                " select sum(ttlPayableAmount)as TotalOutstanding  from tbl.orders where status='unpaid' and suserid='" + id + "'" +
-               " select count(*)as TotalDriver from tbl.driver where uplineid='" + id + "'";
+               " select count(*)as TotalDriver from tbl.driver where uplineid='" + id + "'" +
+               " SELECT COUNT(*)as Booked FROM tbl.Orders WHERE deliveryStatus=''" +
+               " SELECT COUNT(*)as InProcess FROM tbl.Orders WHERE deliveryStatus='InProcess'" +
+               " SELECT COUNT(*)as ReadyForDelivery FROM tbl.Orders WHERE deliveryStatus='ReadyForDelivery'" +
+               " SELECT COUNT(*)as DeliveredUnpaid FROM tbl.Orders WHERE deliveryStatus='Delivered' AND [Status]='unpaid'" +
+               " SELECT COUNT(*)as DeliveredPaid FROM tbl.Orders WHERE deliveryStatus='Delivered' AND [Status]='Paid'";
                 DataSet dscounter = Database.get_DataSet(query_counter);
                 if (dscounter.Tables[0].Rows.Count > 0)
                 {
@@ -122,11 +128,53 @@ namespace APIKwickWash.Controllers
                         TotalDriver = Convert.ToInt32(dscounter.Tables[9].Rows[0]["TotalDriver"]);
                     }
                 }
+                if (dscounter.Tables[10].Rows.Count > 0)
+                {
+                    Booked = Convert.ToInt32(dscounter.Tables[10].Rows[0]["Booked"]);
+                }
+                if (dscounter.Tables[11].Rows.Count > 0)
+                {
+                    InProcess = Convert.ToInt32(dscounter.Tables[11].Rows[0]["InProcess"]);
+                }
+                if (dscounter.Tables[12].Rows.Count > 0)
+                {
+                    ReadyForDelivery = Convert.ToInt32(dscounter.Tables[11].Rows[0]["ReadyForDelivery"]);
+                }
+                if (dscounter.Tables[13].Rows.Count > 0)
+                {
+                    DeliveredUnpaid = Convert.ToInt32(dscounter.Tables[11].Rows[0]["DeliveredUnpaid"]);
+                }
+                if (dscounter.Tables[14].Rows.Count > 0)
+                {
+                    DeliveredPaid = Convert.ToInt32(dscounter.Tables[11].Rows[0]["DeliveredPaid"]);
+                }
+                if (dscounter.Tables[10].Rows.Count > 0)
+                {
+                    Booked = Convert.ToInt32(dscounter.Tables[10].Rows[0]["Booked"]);
+                }
+                if (dscounter.Tables[11].Rows.Count > 0)
+                {
+                    InProcess = Convert.ToInt32(dscounter.Tables[11].Rows[0]["InProcess"]);
+                }
+                if (dscounter.Tables[12].Rows.Count > 0)
+                {
+                    ReadyForDelivery = Convert.ToInt32(dscounter.Tables[11].Rows[0]["ReadyForDelivery"]);
+                }
+                if (dscounter.Tables[13].Rows.Count > 0)
+                {
+                    DeliveredUnpaid = Convert.ToInt32(dscounter.Tables[11].Rows[0]["DeliveredUnpaid"]);
+                }
+                if (dscounter.Tables[14].Rows.Count > 0)
+                {
+                    DeliveredPaid = Convert.ToInt32(dscounter.Tables[11].Rows[0]["DeliveredPaid"]);
+                }
                 string query_update = "update tbl.ttlUserDashboard set ttlCustomer='" + TotalCustomer + "', ttlService='" + ToatlService
                     + "', ttlProduct='" + TotalProduct + "',ttlOrders='" + TotalOrder + "',ttlOrderPending='" + TotalPendingOrder
-                    + "',ttlOrderCompleted='" + TotalCompletedOrder + "',ttlPayments='" + TotalRevenue + "',ttlPaymentsPending='" + TotalCollection
-                    + "',ttlPaymentsCompleted='" + TotalOutstanding + "',ttlDeliveryCompleted='" + TotalCompletedOrder
-                    + "',ttlDeliveryPending='" + TotalPendingOrder + "',ttlDriver='" + TotalDriver + "' where userid='" + id + "'";
+                    + "', ttlOrderCompleted='" + TotalCompletedOrder + "',ttlPayments='" + TotalRevenue + "',ttlPaymentsPending='" + TotalCollection
+                    + "', ttlPaymentsCompleted='" + TotalOutstanding + "',ttlDeliveryCompleted='" + TotalCompletedOrder
+                    + "', ttlDeliveryPending='" + TotalPendingOrder + "',ttlDriver='" + TotalDriver + "', Booked='" + Booked
+                    + "', InProcess='" + InProcess + "', ReadyForDelivery='" + ReadyForDelivery + "', DeliveredUnpaid='" + DeliveredUnpaid
+                    + "', DeliveredPaid='" + DeliveredPaid + "' where userid='" + id + "'";
                 int res = Database.Execute(query_update);
                 foreach (DataRow dr in dt.Rows)
                 {
