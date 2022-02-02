@@ -148,26 +148,6 @@ namespace APIKwickWash.Controllers
                 {
                     DeliveredPaid = Convert.ToInt32(dscounter.Tables[11].Rows[0]["DeliveredPaid"]);
                 }
-                if (dscounter.Tables[10].Rows.Count > 0)
-                {
-                    Booked = Convert.ToInt32(dscounter.Tables[10].Rows[0]["Booked"]);
-                }
-                if (dscounter.Tables[11].Rows.Count > 0)
-                {
-                    InProcess = Convert.ToInt32(dscounter.Tables[11].Rows[0]["InProcess"]);
-                }
-                if (dscounter.Tables[12].Rows.Count > 0)
-                {
-                    ReadyForDelivery = Convert.ToInt32(dscounter.Tables[11].Rows[0]["ReadyForDelivery"]);
-                }
-                if (dscounter.Tables[13].Rows.Count > 0)
-                {
-                    DeliveredUnpaid = Convert.ToInt32(dscounter.Tables[11].Rows[0]["DeliveredUnpaid"]);
-                }
-                if (dscounter.Tables[14].Rows.Count > 0)
-                {
-                    DeliveredPaid = Convert.ToInt32(dscounter.Tables[11].Rows[0]["DeliveredPaid"]);
-                }
                 string query_update = "update tbl.ttlUserDashboard set ttlCustomer='" + TotalCustomer + "', ttlService='" + ToatlService
                     + "', ttlProduct='" + TotalProduct + "',ttlOrders='" + TotalOrder + "',ttlOrderPending='" + TotalPendingOrder
                     + "', ttlOrderCompleted='" + TotalCompletedOrder + "',ttlPayments='" + TotalRevenue + "',ttlPaymentsPending='" + TotalCollection
