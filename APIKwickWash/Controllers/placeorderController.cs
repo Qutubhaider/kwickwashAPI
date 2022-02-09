@@ -132,7 +132,7 @@ namespace APIKwickWash.Controllers
                     queryCustomerLedger += "INSERT INTO tblCustomerLedgers (CustomerId,ShopId,OrderNo,EntryDate,Decsription,DebiteAmount,CreditAmount,Balance,PreviousBalanceAmount) VALUES " +
                         " ('" + data.CUserid + "','" + data.SUserid + "',@orderId,'" + dateTime.ToString() + "','" + data.TranType + "','" + payableAmt
                         + "','" + receivedAmt + "','" + AvaialbeBalance + "','" + balance + "')";
-                    if (TotalBalace >= payableAmt)
+                    if (Math.Round(TotalBalace) >= Math.Round(payableAmt))
                     {
                         //queryCustomerLedger += " UPDATE tbl.Orders SET Status='Paid', paymentMode='Cash' WHERE orderId=@orderId";
                         queryCustomerLedger += " UPDATE tbl.Orders SET Status='Paid', paymentMode='"+ data.TranType + "' WHERE CUserid='" + data.CUserid + "'";
@@ -162,7 +162,7 @@ namespace APIKwickWash.Controllers
                             sendSMSAPI = sendSMSAPI.Replace("Qutub", ds_getOrderId.Tables[1].Rows[0]["NAME"].ToString());
                             sendSMSAPI = sendSMSAPI.Replace("1122", ds_getOrderId.Tables[0].Rows[0]["ORDERID"].ToString());
                             sendSMSAPI = sendSMSAPI.Replace("7277527789", ds_getOrderId.Tables[1].Rows[0]["MOBILE"].ToString());
-                            sendSMSAPI = sendSMSAPI.Replace("2022", "Rs." + payableAmt.ToString());
+                            sendSMSAPI = sendSMSAPI.Replace("2022", "Rs." + Math.Round(payableAmt).ToString());
                             sendSMSAPI = sendSMSAPI.Replace("121212", DateTime.Now.ToString("dd/MMM/yyyy HH:mm tt"));
                             lslog.AppendLine("SMSAPI : " + sendSMSAPI);
                             HttpWebRequest httpWReq = (HttpWebRequest)WebRequest.Create(sendSMSAPI);

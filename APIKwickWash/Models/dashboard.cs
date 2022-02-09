@@ -34,7 +34,12 @@ namespace APIKwickWash.Models
         public int? ReadyForDelivery { get; set; }
         public int? DeliveredUnpaid { get; set; }
         public int? DeliveredPaid { get; set; }
-
+        public decimal? BookedAmount { get; set; }
+        public decimal? InProcessAmount { get; set; }
+        public decimal? ReadyForDeliveryAmount { get; set; }
+        public decimal? DeliveredUnpaidAmount { get; set; }
+        public decimal? DeliveredPaidAmount { get; set; }
+        public decimal? WalletBalance { get; set; }
     }
 
     public class ReadDashboard:dashboard
@@ -67,6 +72,13 @@ namespace APIKwickWash.Models
             ReadyForDelivery = Convert.ToInt32(dr["ReadyForDelivery"]);
             DeliveredUnpaid = Convert.ToInt32(dr["DeliveredUnpaid"]);
             DeliveredPaid = Convert.ToInt32(dr["DeliveredPaid"]);
+            BookedAmount = Convert.ToDecimal(dr["BookedAmount"]);
+            InProcessAmount = Convert.ToDecimal(dr["InProcessAmount"]);
+            ReadyForDeliveryAmount = Convert.ToDecimal(dr["ReadyForDeliveryAmount"]);
+            DeliveredUnpaidAmount = Convert.ToDecimal(dr["DeliveredUnpaidAmount"]);
+            DeliveredPaidAmount = Convert.ToDecimal(dr["DeliveredPaidAmount"]);
+            WalletBalance = Convert.ToDecimal(dr["WALLETBALANCE"]);
+
         }
     }
 

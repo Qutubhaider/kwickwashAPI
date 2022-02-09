@@ -34,128 +34,173 @@ namespace APIKwickWash.Controllers
 
         public IEnumerable<dashboard> Get(int id)
         {
+
+            int TotalCustomer = 0, ToatlService = 0, TotalProduct = 0, TotalOrder = 0, TotalPendingOrder = 0, TotalCompletedOrder = 0, TotalDriver = 0;
+            int Booked = 0, InProcess = 0, ReadyForDelivery = 0, DeliveredUnpaid = 0, DeliveredPaid = 0;
+            double TotalRevenue = 0.0, TotalCollection = 0.0, TotalOutstanding = 0.0;
+            double BookedAmount = 0.0, InProcessAmount = 0.0, ReadyForDeliveryAmount = 0.0, DeliveredUnpaidAmount = 0.0, DeliveredPaidAmount = 0.0, WALLETBALANCE = 0.0;
+            string query_counter = "select count(*) as TotalCustomer from tbl.Profile where uplineid='" + id + "'" +
+           " select count(*)as ToatlService from tbl.myservice where userid='" + id + "' " +
+           " select count(*)as TotalProduct from tbl.myproduct where userid='" + id + "' " +
+           " select count(*)as TotalOrder from tbl.orders where suserid='" + id + "' " +
+           " select count(*)as TotalPendingOrder from tbl.orders where deliverystatus!='Delivered' and suserid='" + id + "'" +
+           " select count(*)as TotalCompletedOrder from tbl.orders where deliverystatus='Delivered' and suserid='" + id + "'" +
+           " select sum(PATABLEAMOUNT)as TotalRevenue from tbl.orders where suserid='" + id + "'" +
+           " select sum(PATABLEAMOUNT)as TotalCollection from tbl.orders where status='Paid' and suserid='" + id + "'" +
+           " select sum(PATABLEAMOUNT)as TotalOutstanding  from tbl.orders where status='unpaid' and suserid='" + id + "'" +
+           " select count(*)as TotalDriver from tbl.driver where uplineid='" + id + "'" +
+           " SELECT COUNT(*)as Booked FROM tbl.Orders WHERE deliveryStatus='' and suserid='" + id + "' " +
+           " SELECT COUNT(*)as InProcess FROM tbl.Orders WHERE deliveryStatus='InProcess' AND suserid='" + id + "' " +
+           " SELECT COUNT(*)as ReadyForDelivery FROM tbl.Orders WHERE deliveryStatus='ReadyForDelivery' AND suserid='" + id + "' " +
+           " SELECT COUNT(*)as DeliveredUnpaid FROM tbl.Orders WHERE deliveryStatus='Delivered' AND [Status]='unpaid' AND suserid='" + id + "' " +
+           " SELECT COUNT(*)as DeliveredPaid FROM tbl.Orders WHERE deliveryStatus='Delivered' AND [Status]='Paid' AND suserid='" + id + "' " +
+           " select sum(PATABLEAMOUNT)as BookedAmount from tbl.orders where deliveryStatus='' and suserid='" + id + "'" +
+           " select sum(PATABLEAMOUNT)as InProcessAmount from tbl.orders where deliveryStatus='InProcess' and suserid='" + id + "'" +
+           " select sum(PATABLEAMOUNT)as ReadyForDeliveryAmount from tbl.orders where deliveryStatus='ReadyForDelivery' and suserid='" + id + "'" +
+           " select sum(PATABLEAMOUNT)as DeliveredUnpaidAmount from tbl.orders where deliveryStatus='Delivered' AND [Status]='unpaid' and suserid='" + id + "'" +
+           " select sum(PATABLEAMOUNT)as DeliveredPaidAmount from tbl.orders where deliveryStatus='Delivered' AND [Status]='Paid' and suserid='" + id + "'" +
+           " SELECT SUM(balance) AS WALLETBALANCE FROM tbl.Profile WHERE upLineId='" + id + "' AND balance>0";
+            DataSet dscounter = Database.get_DataSet(query_counter);
+            if (dscounter.Tables[0].Rows.Count > 0)
+            {
+                if (dscounter.Tables[0].Rows[0]["TotalCustomer"] != DBNull.Value)
+                {
+                    TotalCustomer = Convert.ToInt32(dscounter.Tables[0].Rows[0]["TotalCustomer"]);
+                }
+            }
+            if (dscounter.Tables[1].Rows.Count > 0)
+            {
+                if (dscounter.Tables[1].Rows[0]["ToatlService"] != DBNull.Value)
+                {
+                    ToatlService = Convert.ToInt32(dscounter.Tables[1].Rows[0]["ToatlService"]);
+                }
+            }
+            if (dscounter.Tables[2].Rows.Count > 0)
+            {
+                if (dscounter.Tables[2].Rows[0]["TotalProduct"] != DBNull.Value)
+                {
+                    TotalProduct = Convert.ToInt32(dscounter.Tables[2].Rows[0]["TotalProduct"]);
+                }
+            }
+            if (dscounter.Tables[3].Rows.Count > 0)
+            {
+                if (dscounter.Tables[3].Rows[0]["TotalOrder"] != DBNull.Value)
+                {
+                    TotalOrder = Convert.ToInt32(dscounter.Tables[3].Rows[0]["TotalOrder"]);
+                }
+            }
+            if (dscounter.Tables[4].Rows.Count > 0)
+            {
+                if (dscounter.Tables[4].Rows[0]["TotalPendingOrder"] != DBNull.Value)
+                {
+                    TotalPendingOrder = Convert.ToInt32(dscounter.Tables[4].Rows[0]["TotalPendingOrder"]);
+                }
+            }
+            if (dscounter.Tables[5].Rows.Count > 0)
+            {
+                if (dscounter.Tables[5].Rows[0]["TotalCompletedOrder"] != DBNull.Value)
+                {
+                    TotalCompletedOrder = Convert.ToInt32(dscounter.Tables[5].Rows[0]["TotalCompletedOrder"]);
+                }
+            }
+            if (dscounter.Tables[6].Rows.Count > 0)
+            {
+                if (dscounter.Tables[6].Rows[0]["TotalRevenue"] != DBNull.Value)
+                {
+                    TotalRevenue = Convert.ToDouble(dscounter.Tables[6].Rows[0]["TotalRevenue"]);
+                }
+            }
+            if (dscounter.Tables[7].Rows.Count > 0)
+            {
+                if (dscounter.Tables[7].Rows[0]["TotalCollection"] != DBNull.Value)
+                {
+                    TotalCollection = Convert.ToDouble(dscounter.Tables[7].Rows[0]["TotalCollection"]);
+                }
+            }
+            if (dscounter.Tables[8].Rows.Count > 0)
+            {
+                if (dscounter.Tables[8].Rows[0]["TotalOutstanding"] != DBNull.Value)
+                {
+                    TotalOutstanding = Convert.ToDouble(dscounter.Tables[8].Rows[0]["TotalOutstanding"]);
+                }
+            }
+            if (dscounter.Tables[9].Rows.Count > 0)
+            {
+                if (dscounter.Tables[9].Rows[0]["TotalDriver"] != DBNull.Value)
+                {
+                    TotalDriver = Convert.ToInt32(dscounter.Tables[9].Rows[0]["TotalDriver"]);
+                }
+            }
+            if (dscounter.Tables[10].Rows.Count > 0)
+            {
+                if (dscounter.Tables[10].Rows[0]["Booked"] != DBNull.Value)
+                    Booked = Convert.ToInt32(dscounter.Tables[10].Rows[0]["Booked"]);
+            }
+            if (dscounter.Tables[11].Rows.Count > 0)
+            {
+                if (dscounter.Tables[11].Rows[0]["InProcess"] != DBNull.Value)
+                    InProcess = Convert.ToInt32(dscounter.Tables[11].Rows[0]["InProcess"]);
+            }
+            if (dscounter.Tables[12].Rows.Count > 0)
+            {
+                if (dscounter.Tables[12].Rows[0]["ReadyForDelivery"] != DBNull.Value)
+                    ReadyForDelivery = Convert.ToInt32(dscounter.Tables[12].Rows[0]["ReadyForDelivery"]);
+            }
+            if (dscounter.Tables[13].Rows.Count > 0)
+            {
+                if (dscounter.Tables[13].Rows[0]["DeliveredUnpaid"] != DBNull.Value)
+                    DeliveredUnpaid = Convert.ToInt32(dscounter.Tables[13].Rows[0]["DeliveredUnpaid"]);
+            }
+            if (dscounter.Tables[14].Rows.Count > 0)
+            {
+                if (dscounter.Tables[14].Rows[0]["DeliveredPaid"] != DBNull.Value)
+                    DeliveredPaid = Convert.ToInt32(dscounter.Tables[14].Rows[0]["DeliveredPaid"]);
+            }
+            if (dscounter.Tables[15].Rows.Count > 0)
+            {
+                if (dscounter.Tables[15].Rows[0]["BookedAmount"] != DBNull.Value)
+                    BookedAmount = Convert.ToDouble(dscounter.Tables[15].Rows[0]["BookedAmount"]);
+            }
+            if (dscounter.Tables[16].Rows.Count > 0)
+            {
+                if (dscounter.Tables[16].Rows[0]["InProcessAmount"] != DBNull.Value)
+                    InProcessAmount = Convert.ToDouble(dscounter.Tables[16].Rows[0]["InProcessAmount"]);
+            }
+            if (dscounter.Tables[17].Rows.Count > 0)
+            {
+                if (dscounter.Tables[17].Rows[0]["ReadyForDeliveryAmount"] != DBNull.Value)
+                    ReadyForDeliveryAmount = Convert.ToDouble(dscounter.Tables[17].Rows[0]["ReadyForDeliveryAmount"]);
+            }
+            if (dscounter.Tables[18].Rows.Count > 0)
+            {
+                if (dscounter.Tables[18].Rows[0]["DeliveredUnpaidAmount"] != DBNull.Value)
+                    DeliveredUnpaidAmount = Convert.ToDouble(dscounter.Tables[18].Rows[0]["DeliveredUnpaidAmount"]);
+            }
+            if (dscounter.Tables[19].Rows.Count > 0)
+            {
+                if (dscounter.Tables[19].Rows[0]["DeliveredPaidAmount"] != DBNull.Value)
+                    DeliveredPaidAmount = Convert.ToDouble(dscounter.Tables[19].Rows[0]["DeliveredPaidAmount"]);
+            }
+            if (dscounter.Tables[20].Rows.Count > 0)
+            {
+                if (dscounter.Tables[20].Rows[0]["WALLETBALANCE"] != DBNull.Value)
+                    WALLETBALANCE = Convert.ToDouble(dscounter.Tables[20].Rows[0]["WALLETBALANCE"]);
+            }
+            string query_update = "update tbl.ttlUserDashboard set ttlCustomer='" + TotalCustomer + "', ttlService='" + ToatlService
+                + "', ttlProduct='" + TotalProduct + "',ttlOrders='" + TotalOrder + "',ttlOrderPending='" + TotalPendingOrder
+                + "', ttlOrderCompleted='" + TotalCompletedOrder + "',ttlPayments='" + TotalRevenue + "',ttlPaymentsPending='" + TotalCollection
+                + "', ttlPaymentsCompleted='" + TotalOutstanding + "',ttlDeliveryCompleted='" + TotalCompletedOrder
+                + "', ttlDeliveryPending='" + TotalPendingOrder + "',ttlDriver='" + TotalDriver + "', Booked='" + Booked
+                + "', InProcess='" + InProcess + "', ReadyForDelivery='" + ReadyForDelivery + "', DeliveredUnpaid='" + DeliveredUnpaid
+                + "', DeliveredPaid='" + DeliveredPaid + "', BookedAmount='" + BookedAmount + "', InProcessAmount='" + InProcessAmount
+                + "', ReadyForDeliveryAmount='" + ReadyForDeliveryAmount + "', DeliveredUnpaidAmount='" + DeliveredUnpaidAmount
+                + "', DeliveredPaidAmount='" + DeliveredPaidAmount + "', WALLETBALANCE='" + WALLETBALANCE + "' where userid='" + id + "'";
+            int res = Database.Execute(query_update);
             string query = "select * from tbl.ttlUserDashboard where userid='" + id + "'";
             DataTable dt = Database.get_DataTable(query);
             List<dashboard> dashboard = new List<Models.dashboard>(dt.Rows.Count);
             if (dt.Rows.Count > 0)
             {
-                int TotalCustomer = 0, ToatlService = 0, TotalProduct = 0, TotalOrder = 0, TotalPendingOrder = 0, TotalCompletedOrder = 0, TotalDriver = 0;
-                int Booked = 0, InProcess = 0, ReadyForDelivery = 0, DeliveredUnpaid = 0, DeliveredPaid = 0;
-                double TotalRevenue = 0.0, TotalCollection = 0.0, TotalOutstanding = 0.0;
-                string query_counter = "select count(*) as TotalCustomer from tbl.Profile where uplineid='" + id + "'" +
-               " select count(*)as ToatlService from tbl.myservice where userid='" + id + "' " +
-               " select count(*)as TotalProduct from tbl.myproduct where userid='" + id + "' " +
-               " select count(*)as TotalOrder from tbl.orders where suserid='" + id + "' " +
-               " select count(*)as TotalPendingOrder from tbl.orders where deliverystatus!='Delivered' and suserid='" + id + "'" +
-               " select count(*)as TotalCompletedOrder from tbl.orders where deliverystatus='Delivered' and suserid='" + id + "'" +
-               " select sum(ttlPayableAmount)as TotalRevenue from tbl.orders where suserid='" + id + "'" +
-               " select sum(ttlPayableAmount)as TotalCollection from tbl.orders where status='Paid' and suserid='" + id + "'" +
-               " select sum(ttlPayableAmount)as TotalOutstanding  from tbl.orders where status='unpaid' and suserid='" + id + "'" +
-               " select count(*)as TotalDriver from tbl.driver where uplineid='" + id + "'" +
-               " SELECT COUNT(*)as Booked FROM tbl.Orders WHERE deliveryStatus=''" +
-               " SELECT COUNT(*)as InProcess FROM tbl.Orders WHERE deliveryStatus='InProcess'" +
-               " SELECT COUNT(*)as ReadyForDelivery FROM tbl.Orders WHERE deliveryStatus='ReadyForDelivery'" +
-               " SELECT COUNT(*)as DeliveredUnpaid FROM tbl.Orders WHERE deliveryStatus='Delivered' AND [Status]='unpaid'" +
-               " SELECT COUNT(*)as DeliveredPaid FROM tbl.Orders WHERE deliveryStatus='Delivered' AND [Status]='Paid'";
-                DataSet dscounter = Database.get_DataSet(query_counter);
-                if (dscounter.Tables[0].Rows.Count > 0)
-                {
-                    if (dscounter.Tables[0].Rows[0]["TotalCustomer"] != DBNull.Value)
-                    {
-                        TotalCustomer = Convert.ToInt32(dscounter.Tables[0].Rows[0]["TotalCustomer"]);
-                    }
-                }
-                if (dscounter.Tables[1].Rows.Count > 0)
-                {
-                    if (dscounter.Tables[1].Rows[0]["ToatlService"] != DBNull.Value)
-                    {
-                        ToatlService = Convert.ToInt32(dscounter.Tables[1].Rows[0]["ToatlService"]);
-                    }
-                }
-                if (dscounter.Tables[2].Rows.Count > 0)
-                {
-                    if (dscounter.Tables[2].Rows[0]["TotalProduct"] != DBNull.Value)
-                    {
-                        TotalProduct = Convert.ToInt32(dscounter.Tables[2].Rows[0]["TotalProduct"]);
-                    }
-                }
-                if (dscounter.Tables[3].Rows.Count > 0)
-                {
-                    if (dscounter.Tables[3].Rows[0]["TotalOrder"] != DBNull.Value)
-                    {
-                        TotalOrder = Convert.ToInt32(dscounter.Tables[3].Rows[0]["TotalOrder"]);
-                    }
-                }
-                if (dscounter.Tables[4].Rows.Count > 0)
-                {
-                    if (dscounter.Tables[4].Rows[0]["TotalPendingOrder"] != DBNull.Value)
-                    {
-                        TotalPendingOrder = Convert.ToInt32(dscounter.Tables[4].Rows[0]["TotalPendingOrder"]);
-                    }
-                }
-                if (dscounter.Tables[5].Rows.Count > 0)
-                {
-                    if (dscounter.Tables[5].Rows[0]["TotalCompletedOrder"] != DBNull.Value)
-                    {
-                        TotalCompletedOrder = Convert.ToInt32(dscounter.Tables[5].Rows[0]["TotalCompletedOrder"]);
-                    }
-                }
-                if (dscounter.Tables[6].Rows.Count > 0)
-                {
-                    if (dscounter.Tables[6].Rows[0]["TotalRevenue"] != DBNull.Value)
-                    {
-                        TotalRevenue = Convert.ToDouble(dscounter.Tables[6].Rows[0]["TotalRevenue"]);
-                    }
-                }
-                if (dscounter.Tables[7].Rows.Count > 0)
-                {
-                    if (dscounter.Tables[7].Rows[0]["TotalCollection"] != DBNull.Value)
-                    {
-                        TotalCollection = Convert.ToDouble(dscounter.Tables[7].Rows[0]["TotalCollection"]);
-                    }
-                }
-                if (dscounter.Tables[8].Rows.Count > 0)
-                {
-                    if (dscounter.Tables[8].Rows[0]["TotalOutstanding"] != DBNull.Value)
-                    {
-                        TotalOutstanding = Convert.ToDouble(dscounter.Tables[8].Rows[0]["TotalOutstanding"]);
-                    }
-                }
-                if (dscounter.Tables[9].Rows.Count > 0)
-                {
-                    if (dscounter.Tables[9].Rows[0]["TotalDriver"] != DBNull.Value)
-                    {
-                        TotalDriver = Convert.ToInt32(dscounter.Tables[9].Rows[0]["TotalDriver"]);
-                    }
-                }
-                if (dscounter.Tables[10].Rows.Count > 0)
-                {
-                    Booked = Convert.ToInt32(dscounter.Tables[10].Rows[0]["Booked"]);
-                }
-                if (dscounter.Tables[11].Rows.Count > 0)
-                {
-                    InProcess = Convert.ToInt32(dscounter.Tables[11].Rows[0]["InProcess"]);
-                }
-                if (dscounter.Tables[12].Rows.Count > 0)
-                {
-                    ReadyForDelivery = Convert.ToInt32(dscounter.Tables[11].Rows[0]["ReadyForDelivery"]);
-                }
-                if (dscounter.Tables[13].Rows.Count > 0)
-                {
-                    DeliveredUnpaid = Convert.ToInt32(dscounter.Tables[11].Rows[0]["DeliveredUnpaid"]);
-                }
-                if (dscounter.Tables[14].Rows.Count > 0)
-                {
-                    DeliveredPaid = Convert.ToInt32(dscounter.Tables[11].Rows[0]["DeliveredPaid"]);
-                }
-                string query_update = "update tbl.ttlUserDashboard set ttlCustomer='" + TotalCustomer + "', ttlService='" + ToatlService
-                    + "', ttlProduct='" + TotalProduct + "',ttlOrders='" + TotalOrder + "',ttlOrderPending='" + TotalPendingOrder
-                    + "', ttlOrderCompleted='" + TotalCompletedOrder + "',ttlPayments='" + TotalRevenue + "',ttlPaymentsPending='" + TotalCollection
-                    + "', ttlPaymentsCompleted='" + TotalOutstanding + "',ttlDeliveryCompleted='" + TotalCompletedOrder
-                    + "', ttlDeliveryPending='" + TotalPendingOrder + "',ttlDriver='" + TotalDriver + "', Booked='" + Booked
-                    + "', InProcess='" + InProcess + "', ReadyForDelivery='" + ReadyForDelivery + "', DeliveredUnpaid='" + DeliveredUnpaid
-                    + "', DeliveredPaid='" + DeliveredPaid + "' where userid='" + id + "'";
-                int res = Database.Execute(query_update);
                 foreach (DataRow dr in dt.Rows)
                 {
                     dashboard.Add(new ReadDashboard(dr));
