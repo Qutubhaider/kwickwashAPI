@@ -14,7 +14,6 @@ namespace APIKwickWash.Controllers
     
     public class LoginController : ApiController
     {
-        /* GET api/<controller> */
         public IEnumerable<Login> Get()
         {
             string query = "select * from tbl.login";
@@ -30,8 +29,6 @@ namespace APIKwickWash.Controllers
             }
             return login;
         }
-
-        /* GET api/<controller>/id */
         public IEnumerable<Login> Get(int id)
         {
             string query = "select * from tbl.login where userid='" + id.ToString() + "'";
@@ -47,9 +44,6 @@ namespace APIKwickWash.Controllers
             return login;
         }
 
-
-      
-        /* POST api/<controller> */
         [HttpPost]
         public string Post([FromBody]CreateLogin vals)
         {
@@ -81,8 +75,7 @@ namespace APIKwickWash.Controllers
                 return "0";
             }
         }
-
-        /* DELETE api/<controller>/1 */
+        
         public string Delete(int id)
         {
             string query = "delete from tbl.login where userud='" + id + "'";

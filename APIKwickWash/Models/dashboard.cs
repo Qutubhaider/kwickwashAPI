@@ -40,6 +40,10 @@ namespace APIKwickWash.Models
         public decimal? DeliveredUnpaidAmount { get; set; }
         public decimal? DeliveredPaidAmount { get; set; }
         public decimal? WalletBalance { get; set; }
+        public int? ttlVendor { get; set; }
+        public int? ttlShop { get; set; }
+        public int? ttlReferral { get; set; }
+
     }
 
     public class ReadDashboard:dashboard
@@ -78,7 +82,9 @@ namespace APIKwickWash.Models
             DeliveredUnpaidAmount = Convert.ToDecimal(dr["DeliveredUnpaidAmount"]);
             DeliveredPaidAmount = Convert.ToDecimal(dr["DeliveredPaidAmount"]);
             WalletBalance = Convert.ToDecimal(dr["WALLETBALANCE"]);
-
+            ttlVendor = Convert.ToInt32(dr["TOTALVENDOR"]);
+            ttlShop = Convert.ToInt32(dr["TOTALSHOP"]);
+            ttlReferral = Convert.ToInt32(dr["TOTALReferral"]);
         }
     }
 

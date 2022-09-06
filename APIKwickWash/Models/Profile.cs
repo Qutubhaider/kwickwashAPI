@@ -38,6 +38,10 @@ namespace APIKwickWash.Models
         public string areaId { get; set; }
         public decimal? balance { get; set; }
         public string flgIsSMS { get; set; }
+        public string gender { get; set; }
+        public string occupation { get; set; }
+        public string maritalstatus { get; set; }
+        public string doa { get; set; }
     }
     public class CreateProfile : Profile
     {
@@ -75,6 +79,11 @@ namespace APIKwickWash.Models
             shopUserId = dr["upLineId"].ToString();
             balance = Convert.ToDecimal(dr["balance"]);
             flgIsSMS = dr["flgIsSMS"].ToString();
+            gender = dr["gender"].ToString();
+            occupation = dr["occupation"].ToString();
+            dob = dr["dob"].ToString();
+            doa = dr["doa"].ToString();
+            maritalstatus = dr["maritalstatus"].ToString();
         }
     }
 
@@ -108,6 +117,11 @@ namespace APIKwickWash.Models
             vendorName = dr["VendorName"].ToString();
             balance = Convert.ToDecimal(dr["balance"]);
             flgIsSMS = dr["flgIsSMS"].ToString();
+            gender = dr["gender"].ToString();
+            occupation = dr["occupation"].ToString();
+            dob = dr["dob"].ToString();
+            doa = dr["doa"].ToString();
+            maritalstatus = dr["maritalstatus"].ToString();
         }
     }
 }

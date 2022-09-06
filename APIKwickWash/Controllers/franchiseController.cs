@@ -13,7 +13,7 @@ namespace APIKwickWash.Controllers
     {
         public IEnumerable<franchise> Get()
         {
-            string query = "select * from tbl.franchise";
+            string query = "select * from tbl.franchise order by 1 desc";
             DataTable dt = Database.get_DataTable(query);
             List<franchise> franchise = new List<Models.franchise>(dt.Rows.Count);
             if (dt.Rows.Count > 0)
@@ -30,11 +30,13 @@ namespace APIKwickWash.Controllers
         {
             try
             {
+                TimeZoneInfo INDIAN_ZONE = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
+                DateTime dateTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, INDIAN_ZONE);
                 string query_franchise = "";
                 if (values.franchiseId == "0")
                 {
-                    query_franchise = "insert into tbl.franchise (name,mobile,email,city) values ('" + values.name
-                        + "','" + values.mobile + "','" + values.email + "','" + values.city + "')";
+                    query_franchise = "insert into tbl.franchise (name,mobile,email,city,dtCreatedDate) values ('" + values.name
+                        + "','" + values.mobile + "','" + values.email + "','" + values.city + "','"+ dateTime.ToString() + "')";
                 }
                 else
                 {

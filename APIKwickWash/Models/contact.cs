@@ -15,6 +15,7 @@ namespace APIKwickWash.Models
         public string address { get; set; }
         public string mess { get; set; }
         public string status { get; set; }
+        public string date { get; set; }
     }
     
     public class CreateContact:contact
@@ -33,6 +34,15 @@ namespace APIKwickWash.Models
             address = dr["address"].ToString();
             mess = dr["mess"].ToString();
             status = dr["status"].ToString();
+            if (dr["dtCreatedDate"] != DBNull.Value)
+            {
+                DateTime dtCreateDate = Convert.ToDateTime(dr["dtCreatedDate"]);
+                date = dtCreateDate.ToString("dd-MMM-yyyy").ToString();
+            }
+            else
+            {
+                date = "NULL";
+            }
         }
     }
 }

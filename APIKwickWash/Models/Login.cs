@@ -17,6 +17,28 @@ namespace APIKwickWash.Models
         public string role { get; set; }
     }
 
+    public class OTPLogin
+    {
+        public string username { get; set; }
+        public string password { get; set; }
+        public string role { get; set; }
+    }
+
+    public class LoginWithOTP
+    {
+        public string userid { get; set; }
+        public string otp { get; set; }
+    }
+
+    public class CreateLoginWithOTP : LoginWithOTP
+    {
+    }
+
+
+    public class CreateOTPLogin : OTPLogin
+    {
+
+    }
     public class CreateLogin : Login
     {
     }

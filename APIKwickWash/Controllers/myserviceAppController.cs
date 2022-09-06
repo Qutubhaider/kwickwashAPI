@@ -17,7 +17,8 @@ namespace APIKwickWash.Controllers
         [System.Web.Mvc.HttpGet]
         public IEnumerable<kwickService> Get(int id)
         {
-            string query = "select ms.srId,s.serviceName,s.serviceDescription,s.serviceImg,ms.status,s.startAt,s.duration,s.Unit from tbl.myservice ms join tbl.service s on s.srid=ms.srid where ms.userid='" + id + "' and ms.status='1' order by s.orderno asc";
+            string query = "select ms.srId,s.serviceName,s.serviceDescription,s.serviceImg,ms.status,s.startAt,s.duration,s.Unit from tbl.myservice" +
+                "  ms join tbl.service s on s.srid=ms.srid where ms.userid='" + id + "' and ms.srid!=22 and ms.status='1' order by s.orderno asc";
             //string query = "select ms.srId,s.serviceName,s.serviceDescription,s.serviceImg,ms.status,ms.startAt,ms.duration,ms.Unit from " +
             //    "tbl.myservice ms join tbl.service s on s.srid=ms.srid where ms.userid='" + id + "'";
             DataTable dt = Database.get_DataTable(query);

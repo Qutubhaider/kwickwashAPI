@@ -14,6 +14,7 @@ namespace APIKwickWash.Models
         public string email { get; set; }
         public string city { get; set; }
         public string status { get; set; }
+        public string date { get; set; }
     }
 
     public class CreateFranchise: franchise
@@ -31,6 +32,15 @@ namespace APIKwickWash.Models
             email = dr["email"].ToString();
             city = dr["city"].ToString();
             status = dr["status"].ToString();
+            if (dr["dtCreatedDate"]!= DBNull.Value)
+            {
+                DateTime dtCreateDate = Convert.ToDateTime(dr["dtCreatedDate"]);
+                date = dtCreateDate.ToString("dd-MMM-yyyy").ToString();
+            }
+            else
+            {
+                date = "NULL";
+            }
         }
     }
 }

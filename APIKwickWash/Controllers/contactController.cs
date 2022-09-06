@@ -13,7 +13,7 @@ namespace APIKwickWash.Controllers
     {
         public IEnumerable<contact> Get()
         {
-            string query = "select * from tbl.contact";
+            string query = "select * from tbl.contact order by 1 desc";
             DataTable dt = Database.get_DataTable(query);
             List<contact> contact = new List<Models.contact>(dt.Rows.Count);
             if (dt.Rows.Count > 0)
@@ -30,11 +30,13 @@ namespace APIKwickWash.Controllers
         {
             try
             {
+                TimeZoneInfo INDIAN_ZONE = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
+                DateTime dateTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, INDIAN_ZONE);
                 string query_contact = "";
                 if (values.contactId == "0")
                 {
-                    query_contact = "insert into tbl.contact (name,mobile,email,address,mess) values ('" + values.name
-                        + "','" + values.mobile + "','" + values.email + "','" + values.address + "','" + values.mess + "')";
+                    query_contact = "insert into tbl.contact (name,mobile,email,address,mess,dtCreatedDate) values ('" + values.name
+                        + "','" + values.mobile + "','" + values.email + "','" + values.address + "','" + values.mess + "','" + dateTime.ToString() + "')";
                 }
                 else
                 {

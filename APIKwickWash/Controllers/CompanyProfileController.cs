@@ -91,27 +91,26 @@ namespace APIKwickWash.Controllers
             {
                 string query_CompanyProfile = "", query_login = "", password = "", roles = "", VendorId = "", res = "";
                 int res1 = 0;
+                if (values.vendorId == "0")
+                {
+                    password = "pass@123";
+                    roles = "5";
+                    VendorId = "0";
+                }
+                else if (values.vendorId == "1")
+                {
+                    password = "pass@123";
+                    roles = "3";
+                    VendorId = "1";
+                }
+                else if (values.vendorId == "2")
+                {
+                    password = "pass@123";
+                    roles = "4";
+                    VendorId = "2";
+                }
                 if (values.companyProfileId == 0)
                 {
-                    if (values.vendorId == "0")
-                    {
-                        password = "pass@123";
-                        roles = "5";
-                        VendorId = "0";
-                    }
-                    else if (values.vendorId == "1")
-                    {
-                        password = "pass@123";
-                        roles = "3";
-                        VendorId = "1";
-                    }
-                    else if (values.vendorId == "2")
-                    {
-                        password = "pass@123";
-                        roles = "3";
-                        VendorId = "2";
-                    }
-
                     query_login = "insert into tbl.login (username,password,name,email,role,status) values ('" + values.Mobile + "','" + password.ToString()
                         + "','" + values.AuthorizedPersonName + "','" + values.Email + "','" + roles.ToString() + "','1')";
 
@@ -134,7 +133,7 @@ namespace APIKwickWash.Controllers
                 }
                 else
                 {
-                    query_CompanyProfile = "update tbl.CompanyProfile set dtmUpdate='" + DateTime.Now.ToString() + "',vendorId='" + values.vendorId
+                    query_CompanyProfile = "update tbl.CompanyProfile set dtmUpdate='" + DateTime.Now.ToString() + "',vendorId='" + VendorId
                         + "',profileType='" + values.profileType + "',companyName='" + values.companyName + "',companyEmail='" + values.companyEmail
                         + "',companyMobile='" + values.companyMobile + "',companyRegistrationNo='" + values.companyRegistrationNo
                         + "',companyRegistrationDocument='" + values.companyRegistrationDocument + "',companyGSTno='" + values.companyGSTno + "',companyGSTimg='" + values.companyGSTimg

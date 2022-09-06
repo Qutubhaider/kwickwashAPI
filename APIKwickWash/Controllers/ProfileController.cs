@@ -135,10 +135,11 @@ namespace APIKwickWash.Controllers
 
                     query_profile = "declare @Userid bigint select @Userid=IDENT_CURRENT('tbl.login')";
 
-                    query_profile += "insert into tbl.Profile(userId,name,emailId,mobile,address,state,city,pincode,companyLogo,upLineId,Location,balance) values " +
+                    query_profile += "insert into tbl.Profile(userId,name,emailId,mobile,address,state,city,pincode,companyLogo,upLineId,Location,balance,LEDGERBALANCE,gender,Occupation,MaritalStatus,doa) values " +
                         "(@Userid,'" + cname.ToString() + "','" + values.emailId + "','" + values.mobile + "','" + values.address
                         + "','" + values.state + "','" + values.city + "','" + values.pincode + "','" + values.companyLogo + "','" + shopId
-                        + "','" + values.Location + "','0')";
+                        + "','" + values.Location + "','0','0','" + values.gender + "','" + values.occupation + "','" + values.maritalstatus
+                        + "','" + values.doa + "')";
                     res = Database.Execute_Transaction(query_login, query_profile);
                 }
                 else
@@ -222,6 +223,26 @@ namespace APIKwickWash.Controllers
                     if (values.Location != null)
                     {
                         sqlQuery += "Location='" + values.Location + "',";
+                    }
+
+                    if (values.gender != null)
+                    {
+                        sqlQuery += "gender='" + values.gender + "',";
+                    }
+
+                    if (values.occupation != null)
+                    {
+                        sqlQuery += "occupation='" + values.occupation + "',";
+                    }
+
+                    if (values.maritalstatus != null)
+                    {
+                        sqlQuery += "maritalstatus='" + values.maritalstatus + "',";
+                    }
+
+                    if (values.doa != null)
+                    {
+                        sqlQuery += "doa='" + values.doa + "',";
                     }
 
                     query_profile = "update tbl.Profile set " + sqlQuery + " dtmUpdate='" + DateTime.Now.ToString() + "' where profileId='" + values.profileId + "'";
