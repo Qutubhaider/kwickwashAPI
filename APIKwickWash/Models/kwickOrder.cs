@@ -76,7 +76,14 @@ namespace APIKwickWash.Models
             longs = dr["longs"].ToString();
             companyName = dr["companyName"].ToString();
             dName = dr["dName"].ToString();
-            isAccept = dr["isAccept"].ToString();
+            if (dr["isAccept"] != DBNull.Value)
+            {
+                isAccept = dr["isAccept"].ToString();
+            }
+            else
+            {
+                isAccept = "0";
+            }
         }
     }
 }

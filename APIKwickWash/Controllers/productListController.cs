@@ -42,7 +42,7 @@ namespace APIKwickWash.Controllers
 
         public List<product> GetWebPro(int id,string val)
         {
-            string query = "select proId,srId,serviceName,productName,unit,(myprice) as price,proImg,status,productCode,(myprice1)as dropOffPrice,pickupDropPrice,productQty,minOrder from tbl.myproduct where userid='" + id + "' and status='1' order by srId asc";
+            string query = "select proId,srId,serviceName,productName,unit,(myprice) as price,proImg,status,productCode,(myprice1)as dropOffPrice,pickupDropPrice,productQty,minOrder from tbl.myproduct where userid='" + id + "' and status='1' and myprice!=0 and myprice1!=0 and pickupDropPrice!=0 order by srId asc";
             DataTable dt = Database.get_DataTable(query);
             List<product> product = new List<Models.product>(dt.Rows.Count);
             if (dt.Rows.Count > 0)

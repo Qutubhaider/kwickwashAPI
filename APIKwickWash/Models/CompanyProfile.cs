@@ -54,7 +54,12 @@ namespace APIKwickWash.Models
         public string Location { get; set; }
         public string Location1 { get; set; }
         public string Area { get; set; }
-
+        public bool? flgIsGST { get; set; }
+        public int? vid { get; set; }
+        public int? rid { get; set; }
+        public int? inCommisionPercent { get; set; }
+        public int inRole { get; set; }
+        public string stRole { get; set; }
     }
     
     public class CreateCompanyProfile : CompanyProfile
@@ -102,7 +107,7 @@ namespace APIKwickWash.Models
             BankName = dr["BankName"].ToString();
             BankAccount = dr["BankAccount"].ToString();
             BankIFSC = dr["BankIFSC"].ToString();
-            BankBranch = dr["LogoPhoto"].ToString();
+            BankBranch = dr["BankBranch"].ToString();
             LogoPhoto = dr["LogoPhoto"].ToString();
             GSTno = dr["GSTno"].ToString();
             GSTimg = dr["GSTimg"].ToString();
@@ -112,6 +117,10 @@ namespace APIKwickWash.Models
             Location = dr["Location"].ToString();
             Location1 = dr["Location1"].ToString();
             Area = dr["Area"].ToString();
+            flgIsGST = Convert.ToBoolean(dr["flgIsGST"]);
+            vid = Convert.ToInt32(dr["inVendorId"]);
+            rid = Convert.ToInt32(dr["inReferalId"]);
+            inCommisionPercent = Convert.ToInt32(dr["inCommisionPercent"]);
         }
     }
 }

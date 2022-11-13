@@ -49,7 +49,7 @@ namespace APIKwickWash.Controllers
                     }
                     else
                     {
-                        query = "update tbl.cart set orderQty='" + data.orderQty + "',totalQty='" + data.orderQty + "' where CUserid='" + data.CUserid + "' and SUserid='" + data.SUserid
+                        query = "update tbl.cart set orderQty='" + data.orderQty + "',totalQty='" + data.totalQty + "' where CUserid='" + data.CUserid + "' and SUserid='" + data.SUserid
                                 + "' and proId='" + data.proId + "'";
                     }
                 }

@@ -60,10 +60,10 @@ namespace APIKwickWash.Controllers
             return profile;
         }
 
-        public List<CompanyProfile> GetShopList(int pincode, string status,string shop)
+        public List<CompanyProfile> GetShopList(int pincode, string status, string shop)
         {
             string query = "";
-            if (pincode==0)
+            if (pincode == 0)
             {
                 query = "select * from tbl.CompanyProfile where VendorId='2'";
             }
@@ -71,7 +71,7 @@ namespace APIKwickWash.Controllers
             {
                 query = "select * from tbl.CompanyProfile where CommunicationPincode='" + pincode + "' and VendorId='2'";
             }
-           
+
             DataTable dt = Database.get_DataTable(query);
             List<CompanyProfile> profile = new List<Models.CompanyProfile>(dt.Rows.Count);
             if (dt.Rows.Count > 0)
@@ -85,7 +85,7 @@ namespace APIKwickWash.Controllers
         }
 
 
-        public string Post([FromBody]CreateCompanyProfile values)
+        public string Post([FromBody] CreateCompanyProfile values)
         {
             try
             {
@@ -120,7 +120,8 @@ namespace APIKwickWash.Controllers
                         "companyName,companyMobile,companyEmail,companyRegistrationNo,companyRegistrationDocument,companyGSTno,companyGSTimg," +
                         "companyPAN,companyPANimg,AuthorizedPersonName,Email,Mobile,AadharNo,AadharImg,PANno,PANimg,CommunicationAddress," +
                         "CommunicationState,CommunicationCity,CommunicationPincode,RegAddess,RegState,RegCity,RegPincode,BankName,BankAccount," +
-                        "BankIFSC,BankBranch,LogoPhoto,GSTno,GSTimg,Latitude,Longitude,Status,Location,Location1,Area) values ('" + DateTime.Now.ToString()
+                        "BankIFSC,BankBranch,LogoPhoto,GSTno,GSTimg,Latitude,Longitude,Status,Location,Location1,Area," +
+                        "flgIsGST,inRole,stRole,inVendorId,inReferalId,inCommisionPercent) values ('" + DateTime.Now.ToString()
                         + "','" + DateTime.Now.ToString() + "','0','0',@Userid,'" + VendorId + "','" + values.profileType + "','" + values.companyType
                         + "','" + values.companyName + "','" + values.companyMobile + "','" + values.companyEmail + "','" + values.companyRegistrationNo + "','" + values.companyRegistrationDocument
                         + "','" + values.companyGSTno + "','" + values.companyGSTimg + "','" + values.companyPAN + "','" + values.companyPANimg + "','" + values.AuthorizedPersonName
@@ -128,7 +129,8 @@ namespace APIKwickWash.Controllers
                         + "','" + values.CommunicationAddress + "','" + values.CommunicationState + "','" + values.CommunicationCity + "','" + values.CommunicationPincode
                         + "','" + values.RegAddess + "','" + values.RegState + "','" + values.RegCity + "','" + values.RegPincode + "','" + values.BankName + "','" + values.BankAccount
                         + "','" + values.BankIFSC + "','" + values.BankBranch + "','" + values.LogoPhoto + "','" + values.GSTno + "','" + values.GSTimg + "','" + values.Latitude
-                        + "','" + values.Longitude + "','" + values.Status + "','" + values.Location + "','" + values.Location1 + "','" + values.Area + "')";
+                        + "','" + values.Longitude + "','" + values.Status + "','" + values.Location + "','" + values.Location1 + "','" + values.Area + "','" + values.flgIsGST
+                        + "','" + values.inRole + "','" + values.stRole + "','" + values.vid + "','" + values.rid + "','" + values.inCommisionPercent + "')";
                     res = Database.Execute_Transaction(query_login, query_CompanyProfile);
                 }
                 else
@@ -145,7 +147,9 @@ namespace APIKwickWash.Controllers
                         + "',BankAccount='" + values.BankAccount + "',BankIFSC='" + values.BankIFSC + "',BankBranch='" + values.BankBranch + "',LogoPhoto='" + values.LogoPhoto
                         + "',GSTno='" + values.GSTno + "',GSTimg='" + values.GSTimg + "',Latitude='" + values.Latitude + "',Longitude='" + values.Longitude
                         + "',Location='" + values.Location + "',Location1='" + values.Location1 + "',Area='" + values.Area
-                        + "' where companyProfileId='" + values.companyProfileId + "'";
+                        + "',flgIsGST='" + values.flgIsGST + "',inRole='" + values.inRole + "',stRole='" + values.stRole
+                        + "',inVendorId='" + values.vid + "',inReferalId='" + values.rid
+                        + "',inCommisionPercent='" + values.inCommisionPercent + "' where companyProfileId='" + values.companyProfileId + "'";
 
                     res1 = Database.Execute(query_CompanyProfile);
                 }
