@@ -98,4 +98,10 @@ namespace APIKwickWash.Models
         public decimal? TotalCollection { get; set; }
         public decimal? TotalOutstanding { get; set; }
     }
+
+    public class VendorShopCount
+    {
+        public int? TotalVendor { get; set;}
+        public int? TotalShop { get; set; }
+    }
 }

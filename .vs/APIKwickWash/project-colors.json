@@ -1,6 +1,11 @@
 {
   "Version": 1,
   "ProjectMap": {
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
     "fd0a0d5e-b3fc-4e39-a851-e6888dc05f47": {
       "ProjectGuid": "fd0a0d5e-b3fc-4e39-a851-e6888dc05f47",
       "DisplayName": "APIKwickWash",

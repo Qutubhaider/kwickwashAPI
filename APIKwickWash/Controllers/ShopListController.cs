@@ -44,5 +44,37 @@ namespace APIKwickWash.Controllers
             }
             return profile;
         }
+
+        public IEnumerable<CompanyProfile> GetShopListRefralWise(int rid,int status)
+        {
+            string query = "select * from tbl.CompanyProfile where userId in(select userId from tbl.CompanyProfile " +
+                " where  inVendorId in(select userId from tbl.CompanyProfile where  inReferalId='" + rid + "'))";
+            DataTable dt = Database.get_DataTable(query);
+            List<CompanyProfile> profile = new List<Models.CompanyProfile>(dt.Rows.Count);
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    profile.Add(new ReadCompanyProfile(dr));
+                }
+            }
+            return profile;
+        }
+
+        public IEnumerable<CompanyProfile> GetShopListVedorWise(int vid, int status,int statuss)
+        {
+            string query = "select * from tbl.CompanyProfile where userId in(select userId from tbl.CompanyProfile " +
+                " where  inVendorId ='" + vid + "')";
+            DataTable dt = Database.get_DataTable(query);
+            List<CompanyProfile> profile = new List<Models.CompanyProfile>(dt.Rows.Count);
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    profile.Add(new ReadCompanyProfile(dr));
+                }
+            }
+            return profile;
+        }
     }
 }

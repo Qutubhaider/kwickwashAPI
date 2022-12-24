@@ -283,10 +283,10 @@ namespace APIKwickWash.Controllers
               " select sum(PATABLEAMOUNT)as ReadyForDeliveryAmount from tbl.orders where deliveryStatus='ReadyForDelivery' and convert(date,orderDate) between '" + fdate + "' and '" + tdate + "' " +
               " select sum(PATABLEAMOUNT)as DeliveredUnpaidAmount from tbl.orders where deliveryStatus='Delivered' AND [Status]='unpaid' and convert(date,orderDate) between '" + fdate + "' and '" + tdate + "' " +
               " select sum(PATABLEAMOUNT)as DeliveredPaidAmount from tbl.orders where deliveryStatus='Delivered' AND [Status]='Paid' and convert(date,orderDate) between '" + fdate + "' and '" + tdate + "'  " +
-              " SELECT SUM(balance) AS WALLETBALANCE FROM tbl.Profile WHERE  balance>0 and convert(date,dtmAdd) between '" + fdate + "' and '" + tdate + "'" +
-              " select Count(*)AS TOTALVENDOR  from tbl.CompanyProfile WHERE inRole=0  where convert(date,dtmAdd) between '" + fdate + "' and '" + tdate + "'" +
-              " select Count(*)AS TOTALReferral  from tbl.CompanyProfile WHERE inRole=1 where convert(date,dtmAdd) between '" + fdate + "' and '" + tdate + "'" +
-              " select Count(*)AS TOTALSHOP  from tbl.CompanyProfile WHERE inRole=2  where convert(date,dtmAdd) between '" + fdate + "' and '" + tdate + "'";
+              " SELECT SUM(balance) AS WALLETBALANCE FROM tbl.Profile WHERE  balance>0 " +
+              " select Count(*)AS TOTALVENDOR  from tbl.CompanyProfile WHERE inRole=0  " +
+              " select Count(*)AS TOTALReferral  from tbl.CompanyProfile WHERE inRole=1 " +
+              " select Count(*)AS TOTALSHOP  from tbl.CompanyProfile WHERE inRole=2  ";
             }
             else
             {
@@ -819,6 +819,258 @@ namespace APIKwickWash.Controllers
             #endregion
 
             return loMonthDashboard;
+        }
+
+        public VendorShopCount GetVendorShopCount(int rid, string fdate, string tdate, int status, int statuss)
+        {
+            string query_counter = string.Empty;
+            if (!string.IsNullOrEmpty(fdate) && !string.IsNullOrEmpty(tdate))
+            {
+                query_counter = "select count(*) as TotalShop  from tbl.CompanyProfile where userId in(select userId from tbl.CompanyProfile " +
+                " where convert(date,dtmAdd) between '" + fdate + "' and '" + tdate + "' and " +
+                " inVendorId in(select userId from tbl.CompanyProfile where  inReferalId='" + rid + "'))" +
+                " select count(*) AS TotalVendor from tbl.CompanyProfile where convert(date,dtmAdd) between '" + fdate + "' and '" + tdate + "' and inReferalId='" + rid + "'";
+            }
+            else
+            {
+                query_counter = "select count(*) as TotalShop  from tbl.CompanyProfile where userId in(select userId from tbl.CompanyProfile " +
+                 " where inVendorId in(select userId from tbl.CompanyProfile where  inReferalId='" + rid + "'))" +
+                 " select count(*) AS TotalVendor from tbl.CompanyProfile " +
+                 " where  inReferalId ='" + rid + "'";
+            }
+
+            DataSet dscounter = Database.get_DataSet(query_counter);
+
+            VendorShopCount loVendorShopCount = new VendorShopCount();
+
+            if (dscounter.Tables[0].Rows.Count > 0)
+            {
+                loVendorShopCount.TotalShop = Convert.ToInt32(dscounter.Tables[0].Rows[0]["TotalShop"]);
+            }
+            else
+            {
+                loVendorShopCount.TotalShop = 0;
+            }
+
+            if (dscounter.Tables[1].Rows.Count > 0)
+            {
+                loVendorShopCount.TotalVendor = Convert.ToInt32(dscounter.Tables[1].Rows[0]["TotalVendor"]);
+            }
+            else
+            {
+                loVendorShopCount.TotalVendor = 0;
+            }
+
+            return loVendorShopCount;
+        }
+
+
+        public dashboard GetVendorShop(int vid, string fdate, string tdate, int status)
+        {
+            string query_counter = string.Empty;
+            if (!string.IsNullOrEmpty(fdate) && !string.IsNullOrEmpty(tdate))
+            {
+                query_counter = "select count(*) as TotalCustomer from tbl.Profile where upLineId in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and convert(date,dtmAdd) between '" + fdate + "' and '" + tdate + "'" +
+              " select count(*)as ToatlService from tbl.service " +
+              " select count(*)as TotalProduct from tbl.product " +
+              " select count(*)as TotalOrder from tbl.orders where suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and convert(date,orderDate) between '" + fdate + "' and '" + tdate + "' " +
+              " select count(*)as TotalPendingOrder from tbl.orders where suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and deliverystatus!='Delivered' and convert(date,orderDate) between '" + fdate + "' and '" + tdate + "' " +
+              " select count(*)as TotalCompletedOrder from tbl.orders where suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and deliverystatus='Delivered' and convert(date,orderDate) between '" + fdate + "' and '" + tdate + "' " +
+              " select sum(PATABLEAMOUNT)as TotalRevenue from tbl.orders where suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and convert(date,orderDate) between '" + fdate + "' and '" + tdate + "' " +
+              " select sum(PATABLEAMOUNT)as TotalCollection from tbl.orders where suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and status='Paid' and convert(date,orderDate) between '" + fdate + "' and '" + tdate + "' " +
+              " select sum(PATABLEAMOUNT)as TotalOutstanding  from tbl.orders where suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and status='unpaid' and convert(date,orderDate) between '" + fdate + "' and '" + tdate + "' " +
+              " select count(*)as TotalDriver from tbl.driver where convert(date,dtmAdd) between '" + fdate + "' and '" + tdate + "' " +
+              " SELECT COUNT(*)as Booked FROM tbl.Orders WHERE suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and deliveryStatus='' and convert(date,orderDate) between '" + fdate + "' and '" + tdate + "' " +
+              " SELECT COUNT(*)as InProcess FROM tbl.Orders WHERE suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and deliveryStatus='InProcess' and convert(date,orderDate) between '" + fdate + "' and '" + tdate + "' " +
+              " SELECT COUNT(*)as ReadyForDelivery FROM tbl.Orders WHERE suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and deliveryStatus='ReadyForDelivery' and convert(date,orderDate) between '" + fdate + "' and '" + tdate + "' " +
+              " SELECT COUNT(*)as DeliveredUnpaid FROM tbl.Orders WHERE suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and deliveryStatus='Delivered' AND [Status]='unpaid' and convert(date,orderDate) between '" + fdate + "' and '" + tdate + "' " +
+              " SELECT COUNT(*)as DeliveredPaid FROM tbl.Orders WHERE suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and deliveryStatus='Delivered' AND [Status]='Paid' and convert(date,orderDate) between '" + fdate + "' and '" + tdate + "' " +
+              " select sum(PATABLEAMOUNT)as BookedAmount from tbl.orders where suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and deliveryStatus='' and convert(date,orderDate) between '" + fdate + "' and '" + tdate + "' " +
+              " select sum(PATABLEAMOUNT)as InProcessAmount from tbl.orders where suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and deliveryStatus='InProcess' and convert(date,orderDate) between '" + fdate + "' and '" + tdate + "' " +
+              " select sum(PATABLEAMOUNT)as ReadyForDeliveryAmount from tbl.orders where suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and deliveryStatus='ReadyForDelivery' and convert(date,orderDate) between '" + fdate + "' and '" + tdate + "' " +
+              " select sum(PATABLEAMOUNT)as DeliveredUnpaidAmount from tbl.orders where suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and deliveryStatus='Delivered' AND [Status]='unpaid' and convert(date,orderDate) between '" + fdate + "' and '" + tdate + "' " +
+              " select sum(PATABLEAMOUNT)as DeliveredPaidAmount from tbl.orders where suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and deliveryStatus='Delivered' AND [Status]='Paid' and convert(date,orderDate) between '" + fdate + "' and '" + tdate + "'  " +
+              " SELECT SUM(balance) AS WALLETBALANCE FROM tbl.Profile WHERE upLineId in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and  balance>0 " +
+              " select Count(*)AS TOTALVENDOR  from tbl.CompanyProfile WHERE inVendorId='" + vid + "' and inRole=0  " +
+              " select Count(*)AS TOTALReferral  from tbl.CompanyProfile WHERE inVendorId='" + vid + "' and inRole=1 " +
+              " select Count(*)AS TOTALSHOP  from tbl.CompanyProfile WHERE inVendorId='" + vid + "' and inRole=2  ";
+            }
+            else
+            {
+                query_counter = "select count(*) as TotalCustomer from tbl.Profile where upLineId in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "')" +
+               " select count(*)as ToatlService from tbl.service " +
+               " select count(*)as TotalProduct from tbl.product " +
+               " select count(*)as TotalOrder from tbl.orders where suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') " +
+               " select count(*)as TotalPendingOrder from tbl.orders where suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and deliverystatus!='Delivered' " +
+               " select count(*)as TotalCompletedOrder from tbl.orders where suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and deliverystatus='Delivered' " +
+               " select sum(PATABLEAMOUNT)as TotalRevenue from tbl.orders where suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "')" +
+               " select sum(PATABLEAMOUNT)as TotalCollection from tbl.orders where suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and status='Paid' " +
+               " select sum(PATABLEAMOUNT)as TotalOutstanding  from tbl.orders where suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and status='unpaid' " +
+               " select count(*)as TotalDriver from tbl.driver " +
+               " SELECT COUNT(*)as Booked FROM tbl.Orders WHERE suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and deliveryStatus='' " +
+               " SELECT COUNT(*)as InProcess FROM tbl.Orders WHERE suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and deliveryStatus='InProcess' " +
+               " SELECT COUNT(*)as ReadyForDelivery FROM tbl.Orders WHERE suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and deliveryStatus='ReadyForDelivery' " +
+               " SELECT COUNT(*)as DeliveredUnpaid FROM tbl.Orders WHERE suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and deliveryStatus='Delivered' AND [Status]='unpaid' " +
+               " SELECT COUNT(*)as DeliveredPaid FROM tbl.Orders WHERE suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and deliveryStatus='Delivered' AND [Status]='Paid' " +
+               " select sum(PATABLEAMOUNT)as BookedAmount from tbl.orders where suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and deliveryStatus='' " +
+               " select sum(PATABLEAMOUNT)as InProcessAmount from tbl.orders where suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and deliveryStatus='InProcess' " +
+               " select sum(PATABLEAMOUNT)as ReadyForDeliveryAmount from tbl.orders where suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and deliveryStatus='ReadyForDelivery' " +
+               " select sum(PATABLEAMOUNT)as DeliveredUnpaidAmount from tbl.orders where suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and deliveryStatus='Delivered' AND [Status]='unpaid' " +
+               " select sum(PATABLEAMOUNT)as DeliveredPaidAmount from tbl.orders where suserid in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and deliveryStatus='Delivered' AND [Status]='Paid'  " +
+               " SELECT SUM(balance) AS WALLETBALANCE FROM tbl.Profile WHERE upLineId in (select userid from tbl.CompanyProfile where inVendorId='" + vid + "') and balance>0" +
+               " select Count(*)AS TOTALVENDOR  from tbl.CompanyProfile WHERE inVendorId='" + vid + "' and inRole=0" +
+               " select Count(*)AS TOTALReferral  from tbl.CompanyProfile WHERE inVendorId='" + vid + "' and inRole=1" +
+               " select Count(*)AS TOTALSHOP  from tbl.CompanyProfile WHERE inVendorId='" + vid + "' and inRole=2";
+            }
+            DataSet dscounter = Database.get_DataSet(query_counter);
+            dashboard loDashboard = new dashboard();
+            if (dscounter.Tables[0].Rows.Count > 0)
+            {
+                if (dscounter.Tables[0].Rows[0]["TotalCustomer"] != DBNull.Value)
+                {
+                    loDashboard.ttlCustomer = dscounter.Tables[0].Rows[0]["TotalCustomer"].ToString();
+                }
+            }
+            if (dscounter.Tables[1].Rows.Count > 0)
+            {
+                if (dscounter.Tables[1].Rows[0]["ToatlService"] != DBNull.Value)
+                {
+                    loDashboard.ttlService = dscounter.Tables[1].Rows[0]["ToatlService"].ToString();
+                }
+            }
+            if (dscounter.Tables[2].Rows.Count > 0)
+            {
+                if (dscounter.Tables[2].Rows[0]["TotalProduct"] != DBNull.Value)
+                {
+                    loDashboard.ttlProduct = dscounter.Tables[2].Rows[0]["TotalProduct"].ToString();
+                }
+            }
+            if (dscounter.Tables[3].Rows.Count > 0)
+            {
+                if (dscounter.Tables[3].Rows[0]["TotalOrder"] != DBNull.Value)
+                {
+                    loDashboard.ttlOrders = dscounter.Tables[3].Rows[0]["TotalOrder"].ToString();
+                }
+            }
+            if (dscounter.Tables[4].Rows.Count > 0)
+            {
+                if (dscounter.Tables[4].Rows[0]["TotalPendingOrder"] != DBNull.Value)
+                {
+                    loDashboard.ttlOrderPending = dscounter.Tables[4].Rows[0]["TotalPendingOrder"].ToString();
+                }
+            }
+            if (dscounter.Tables[5].Rows.Count > 0)
+            {
+                if (dscounter.Tables[5].Rows[0]["TotalCompletedOrder"] != DBNull.Value)
+                {
+                    loDashboard.ttlOrderCompleted = dscounter.Tables[5].Rows[0]["TotalCompletedOrder"].ToString();
+                }
+            }
+            if (dscounter.Tables[6].Rows.Count > 0)
+            {
+                if (dscounter.Tables[6].Rows[0]["TotalRevenue"] != DBNull.Value)
+                {
+                    loDashboard.ttlPayments = dscounter.Tables[6].Rows[0]["TotalRevenue"].ToString();
+                }
+            }
+            if (dscounter.Tables[7].Rows.Count > 0)
+            {
+                if (dscounter.Tables[7].Rows[0]["TotalCollection"] != DBNull.Value)
+                {
+                    loDashboard.ttlPaymentsPending = dscounter.Tables[7].Rows[0]["TotalCollection"].ToString();
+                }
+            }
+            if (dscounter.Tables[8].Rows.Count > 0)
+            {
+                if (dscounter.Tables[8].Rows[0]["TotalOutstanding"] != DBNull.Value)
+                {
+                    loDashboard.ttlPaymentsCompleted = dscounter.Tables[8].Rows[0]["TotalOutstanding"].ToString();
+                }
+            }
+            if (dscounter.Tables[9].Rows.Count > 0)
+            {
+                if (dscounter.Tables[9].Rows[0]["TotalDriver"] != DBNull.Value)
+                {
+                    loDashboard.ttlDriver = dscounter.Tables[9].Rows[0]["TotalDriver"].ToString();
+                }
+            }
+            if (dscounter.Tables[10].Rows.Count > 0)
+            {
+                if (dscounter.Tables[10].Rows[0]["Booked"] != DBNull.Value)
+                    loDashboard.Booked = Convert.ToInt32(dscounter.Tables[10].Rows[0]["Booked"]);
+            }
+            if (dscounter.Tables[11].Rows.Count > 0)
+            {
+                if (dscounter.Tables[11].Rows[0]["InProcess"] != DBNull.Value)
+                    loDashboard.InProcess = Convert.ToInt32(dscounter.Tables[11].Rows[0]["InProcess"]);
+            }
+            if (dscounter.Tables[12].Rows.Count > 0)
+            {
+                if (dscounter.Tables[12].Rows[0]["ReadyForDelivery"] != DBNull.Value)
+                    loDashboard.ReadyForDelivery = Convert.ToInt32(dscounter.Tables[12].Rows[0]["ReadyForDelivery"]);
+            }
+            if (dscounter.Tables[13].Rows.Count > 0)
+            {
+                if (dscounter.Tables[13].Rows[0]["DeliveredUnpaid"] != DBNull.Value)
+                    loDashboard.DeliveredUnpaid = Convert.ToInt32(dscounter.Tables[13].Rows[0]["DeliveredUnpaid"]);
+            }
+            if (dscounter.Tables[14].Rows.Count > 0)
+            {
+                if (dscounter.Tables[14].Rows[0]["DeliveredPaid"] != DBNull.Value)
+                    loDashboard.DeliveredPaid = Convert.ToInt32(dscounter.Tables[14].Rows[0]["DeliveredPaid"]);
+            }
+            if (dscounter.Tables[15].Rows.Count > 0)
+            {
+                if (dscounter.Tables[15].Rows[0]["BookedAmount"] != DBNull.Value)
+                    loDashboard.BookedAmount = Convert.ToDecimal(dscounter.Tables[15].Rows[0]["BookedAmount"]);
+            }
+            if (dscounter.Tables[16].Rows.Count > 0)
+            {
+                if (dscounter.Tables[16].Rows[0]["InProcessAmount"] != DBNull.Value)
+                    loDashboard.InProcessAmount = Convert.ToDecimal(dscounter.Tables[16].Rows[0]["InProcessAmount"]);
+            }
+            if (dscounter.Tables[17].Rows.Count > 0)
+            {
+                if (dscounter.Tables[17].Rows[0]["ReadyForDeliveryAmount"] != DBNull.Value)
+                    loDashboard.ReadyForDeliveryAmount = Convert.ToDecimal(dscounter.Tables[17].Rows[0]["ReadyForDeliveryAmount"]);
+            }
+            if (dscounter.Tables[18].Rows.Count > 0)
+            {
+                if (dscounter.Tables[18].Rows[0]["DeliveredUnpaidAmount"] != DBNull.Value)
+                    loDashboard.DeliveredUnpaidAmount = Convert.ToDecimal(dscounter.Tables[18].Rows[0]["DeliveredUnpaidAmount"]);
+            }
+            if (dscounter.Tables[19].Rows.Count > 0)
+            {
+                if (dscounter.Tables[19].Rows[0]["DeliveredPaidAmount"] != DBNull.Value)
+                    loDashboard.DeliveredPaidAmount = Convert.ToDecimal(dscounter.Tables[19].Rows[0]["DeliveredPaidAmount"]);
+            }
+            if (dscounter.Tables[20].Rows.Count > 0)
+            {
+                if (dscounter.Tables[20].Rows[0]["WALLETBALANCE"] != DBNull.Value)
+                    loDashboard.WalletBalance = Convert.ToDecimal(dscounter.Tables[20].Rows[0]["WALLETBALANCE"]);
+            }
+            if (dscounter.Tables[21].Rows.Count > 0)
+            {
+                if (dscounter.Tables[21].Rows[0]["TOTALVENDOR"] != DBNull.Value)
+                {
+                    loDashboard.ttlVendor = Convert.ToInt32(dscounter.Tables[21].Rows[0]["TOTALVENDOR"]);
+                }
+            }
+            if (dscounter.Tables[22].Rows.Count > 0)
+            {
+                if (dscounter.Tables[22].Rows[0]["TOTALReferral"] != DBNull.Value)
+                {
+                    loDashboard.ttlReferral = Convert.ToInt32(dscounter.Tables[22].Rows[0]["TOTALReferral"]);
+                }
+            }
+            if (dscounter.Tables[23].Rows.Count > 0)
+            {
+                if (dscounter.Tables[23].Rows[0]["TOTALSHOP"] != DBNull.Value)
+                {
+                    loDashboard.ttlShop = Convert.ToInt32(dscounter.Tables[23].Rows[0]["TOTALSHOP"]);
+                }
+            }
+            return loDashboard;
         }
     }
 }

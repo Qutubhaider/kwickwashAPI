@@ -44,5 +44,23 @@ namespace APIKwickWash.Controllers
             }
             return profile;
         }
+
+
+        public IEnumerable<CompanyProfile> GetVedorListReferral(int rid, int status)
+        {
+            string query = "select * from tbl.CompanyProfile where inReferalId='" + rid + "'";
+
+            DataTable dt = Database.get_DataTable(query);
+            List<CompanyProfile> companyProfiles = new List<Models.CompanyProfile>(dt.Rows.Count);
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    companyProfiles.Add(new ReadCompanyProfile(dr));
+                }
+            }
+            return companyProfiles;
+        }
+
     }
 }

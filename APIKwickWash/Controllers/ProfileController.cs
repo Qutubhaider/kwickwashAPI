@@ -113,7 +113,7 @@ namespace APIKwickWash.Controllers
 
                         string queryCity = "SELECT CITYNAME FROM TBL.CITY WHERE CITYID='" + values.city + "'";
                         DataSet dsCity = Database.get_DataSet(queryCity);
-                        if(dsCity.Tables[0].Rows.Count>0)
+                        if (dsCity.Tables[0].Rows.Count > 0)
                         {
                             values.city = dsCity.Tables[0].Rows[0]["CITYNAME"].ToString();
                         }
@@ -260,7 +260,7 @@ namespace APIKwickWash.Controllers
                             sendSMSAPI = sendSMSAPI.Replace("Qutub", values.name);
                             sendSMSAPI = sendSMSAPI.Replace("UUUU", values.mobile);
                             sendSMSAPI = sendSMSAPI.Replace("7277527789", values.mobile);
-                            sendSMSAPI = sendSMSAPI.Replace("PPPP",password);
+                            sendSMSAPI = sendSMSAPI.Replace("PPPP", password);
                             HttpWebRequest httpWReq = (HttpWebRequest)WebRequest.Create(sendSMSAPI);
                             httpWReq.Method = "POST";
                             httpWReq.ContentType = "application/x-www-form-urlencoded";
