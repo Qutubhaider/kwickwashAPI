@@ -255,10 +255,10 @@ namespace APIKwickWash.Controllers
         public IEnumerable<dashboard> GetAdmin(int id, string fdate, string tdate)
         {
 
-            int TotalCustomer = 0, ToatlService = 0, TotalProduct = 0, TotalOrder = 0, TotalPendingOrder = 0, TotalCompletedOrder = 0, TotalDriver = 0;
+            int TotalCustomer = 0, ToatlService = 0, TotalProduct = 0, TotalOrder = 0, TotalPendingOrder = 0, TotalCompletedOrder = 0, TotalDriver = 0, TotalCancelOrder = 0;
             int Booked = 0, InProcess = 0, ReadyForDelivery = 0, DeliveredUnpaid = 0, DeliveredPaid = 0, TOTALReferral = 0, TOTALVENDOR = 0, TOTALSHOP = 0;
             double TotalRevenue = 0.0, TotalCollection = 0.0, TotalOutstanding = 0.0;
-            double BookedAmount = 0.0, InProcessAmount = 0.0, ReadyForDeliveryAmount = 0.0, DeliveredUnpaidAmount = 0.0, DeliveredPaidAmount = 0.0, WALLETBALANCE = 0.0;
+            double BookedAmount = 0.0, InProcessAmount = 0.0, ReadyForDeliveryAmount = 0.0, DeliveredUnpaidAmount = 0.0, DeliveredPaidAmount = 0.0, WALLETBALANCE = 0.0, TotalCancelOrderAmt = 0.0;
             string query_counter = string.Empty;
 
             if (!string.IsNullOrEmpty(fdate) && !string.IsNullOrEmpty(tdate))
@@ -286,7 +286,9 @@ namespace APIKwickWash.Controllers
               " SELECT SUM(balance) AS WALLETBALANCE FROM tbl.Profile WHERE  balance>0 " +
               " select Count(*)AS TOTALVENDOR  from tbl.CompanyProfile WHERE inRole=0  " +
               " select Count(*)AS TOTALReferral  from tbl.CompanyProfile WHERE inRole=1 " +
-              " select Count(*)AS TOTALSHOP  from tbl.CompanyProfile WHERE inRole=2  ";
+              " select Count(*)AS TOTALSHOP  from tbl.CompanyProfile WHERE inRole=2  " +
+              " SELECT COUNT(*)as TotalCancelOrder FROM tbl.Orders WHERE deliveryStatus='Cancel' and convert(date,orderDate) between '" + fdate + "' and '" + tdate + "' " +
+              " select sum(PATABLEAMOUNT)as TotalCancelOrderAmt from tbl.orders where deliveryStatus='Cancel' and convert(date,orderDate) between '" + fdate + "' and '" + tdate + "' ";
             }
             else
             {
@@ -313,7 +315,9 @@ namespace APIKwickWash.Controllers
                " SELECT SUM(balance) AS WALLETBALANCE FROM tbl.Profile WHERE  balance>0" +
                " select Count(*)AS TOTALVENDOR  from tbl.CompanyProfile WHERE inRole=0" +
                " select Count(*)AS TOTALReferral  from tbl.CompanyProfile WHERE inRole=1" +
-               " select Count(*)AS TOTALSHOP  from tbl.CompanyProfile WHERE inRole=2";
+               " select Count(*)AS TOTALSHOP  from tbl.CompanyProfile WHERE inRole=2" +
+               " SELECT COUNT(*)as TotalCancelOrder FROM tbl.Orders WHERE deliveryStatus='Cancel' " +
+               " select sum(PATABLEAMOUNT)as TotalCancelOrderAmt from tbl.orders where deliveryStatus='Cancel' ";
             }
             DataSet dscounter = Database.get_DataSet(query_counter);
             if (dscounter.Tables[0].Rows.Count > 0)
@@ -462,6 +466,18 @@ namespace APIKwickWash.Controllers
                     TOTALSHOP = Convert.ToInt32(dscounter.Tables[23].Rows[0]["TOTALSHOP"]);
                 }
             }
+            if (dscounter.Tables[24].Rows.Count > 0)
+            {
+                if (dscounter.Tables[24].Rows[0]["TotalCancelOrder"] != DBNull.Value)
+                {
+                    TotalCancelOrder = Convert.ToInt32(dscounter.Tables[24].Rows[0]["TotalCancelOrder"]);
+                }
+            }
+            if (dscounter.Tables[25].Rows.Count > 0)
+            {
+                if (dscounter.Tables[25].Rows[0]["TotalCancelOrderAmt"] != DBNull.Value)
+                    TotalCancelOrderAmt = Convert.ToDouble(dscounter.Tables[25].Rows[0]["TotalCancelOrderAmt"]);
+            }
             string query_update = "update tbl.ttlUserDashboard set ttlCustomer='" + TotalCustomer + "', ttlService='" + ToatlService
                 + "', ttlProduct='" + TotalProduct + "',ttlOrders='" + TotalOrder + "',ttlOrderPending='" + TotalPendingOrder
                 + "', ttlOrderCompleted='" + TotalCompletedOrder + "',ttlPayments='" + TotalRevenue + "',ttlPaymentsPending='" + TotalCollection
@@ -471,7 +487,8 @@ namespace APIKwickWash.Controllers
                 + "', DeliveredPaid='" + DeliveredPaid + "', BookedAmount='" + BookedAmount + "', InProcessAmount='" + InProcessAmount
                 + "', ReadyForDeliveryAmount='" + ReadyForDeliveryAmount + "', DeliveredUnpaidAmount='" + DeliveredUnpaidAmount
                 + "', DeliveredPaidAmount='" + DeliveredPaidAmount + "', WALLETBALANCE='" + WALLETBALANCE + "', TOTALReferral='" + TOTALReferral
-                + "', TOTALVENDOR='" + TOTALVENDOR + "',TOTALSHOP='" + TOTALSHOP + "' where userid='" + id + "'";
+                + "', TOTALVENDOR='" + TOTALVENDOR + "',TOTALSHOP='" + TOTALSHOP
+                + "',ttlOrderCancel='" + TotalCancelOrder + "' ,ttlOrderCancelAmt='" + TotalCancelOrderAmt + "' where userid='" + id + "'";
             int res = Database.Execute(query_update);
 
             string query = "select * from tbl.ttlUserDashboard where userid='" + id + "'";
@@ -490,10 +507,10 @@ namespace APIKwickWash.Controllers
         public IEnumerable<dashboard> GetShop(int id, string fdate, string tdate, string name)
         {
 
-            int TotalCustomer = 0, ToatlService = 0, TotalProduct = 0, TotalOrder = 0, TotalPendingOrder = 0, TotalCompletedOrder = 0, TotalDriver = 0;
+            int TotalCustomer = 0, ToatlService = 0, TotalProduct = 0, TotalOrder = 0, TotalPendingOrder = 0, TotalCompletedOrder = 0, TotalDriver = 0, TotalCancelOrder = 0;
             int Booked = 0, InProcess = 0, ReadyForDelivery = 0, DeliveredUnpaid = 0, DeliveredPaid = 0, TOTALReferral = 0, TOTALVENDOR = 0, TOTALSHOP = 0;
             double TotalRevenue = 0.0, TotalCollection = 0.0, TotalOutstanding = 0.0;
-            double BookedAmount = 0.0, InProcessAmount = 0.0, ReadyForDeliveryAmount = 0.0, DeliveredUnpaidAmount = 0.0, DeliveredPaidAmount = 0.0, WALLETBALANCE = 0.0;
+            double BookedAmount = 0.0, InProcessAmount = 0.0, ReadyForDeliveryAmount = 0.0, DeliveredUnpaidAmount = 0.0, DeliveredPaidAmount = 0.0, WALLETBALANCE = 0.0, TotalCancelOrderAmt = 0.0;
             string query_counter = string.Empty;
 
             if (!string.IsNullOrEmpty(fdate) && !string.IsNullOrEmpty(tdate))
@@ -520,8 +537,10 @@ namespace APIKwickWash.Controllers
               " select sum(PATABLEAMOUNT)as DeliveredPaidAmount from tbl.orders where suserid='" + id + "' and deliveryStatus='Delivered' AND [Status]='Paid' and convert(date,orderDate) between '" + fdate + "' and '" + tdate + "'  " +
               " SELECT SUM(balance) AS WALLETBALANCE FROM tbl.Profile WHERE uplineid='" + id + "' and  balance>0" +
               " select Count(*)AS TOTALVENDOR  from tbl.CompanyProfile WHERE inRole=0" +
-              " select Count(*)AS TOTALReferral  from tbl.CompanyProfile WHERE inRole=1" +
-              " select Count(*)AS TOTALSHOP  from tbl.CompanyProfile WHERE inRole=2";
+              " select Count(*)AS TOTALReferral  from tbl.CompanyProfile WHERE inRole=1 " +
+              " select Count(*)AS TOTALSHOP  from tbl.CompanyProfile WHERE inRole=2 " +
+              " SELECT COUNT(*)as TotalCancelOrder FROM tbl.Orders WHERE suserid='" + id + "' and deliveryStatus='Cancel' and convert(date,orderDate) between '" + fdate + "' and '" + tdate + "' " +
+              " select sum(PATABLEAMOUNT)as TotalCancelOrderAmt from tbl.orders where suserid='" + id + "' and deliveryStatus='Cancel' and convert(date,orderDate) between '" + fdate + "' and '" + tdate + "' ";
             }
             else
             {
@@ -548,7 +567,9 @@ namespace APIKwickWash.Controllers
                " SELECT SUM(balance) AS WALLETBALANCE FROM tbl.Profile WHERE uplineid='" + id + "' and  balance>0" +
                " select Count(*)AS TOTALVENDOR  from tbl.CompanyProfile WHERE inRole=0" +
                " select Count(*)AS TOTALReferral  from tbl.CompanyProfile WHERE inRole=1" +
-               " select Count(*)AS TOTALSHOP  from tbl.CompanyProfile WHERE inRole=2";
+               " select Count(*)AS TOTALSHOP  from tbl.CompanyProfile WHERE inRole=2 " +
+               " SELECT COUNT(*)as TotalCancelOrder FROM tbl.Orders WHERE suserid='" + id + "' and deliveryStatus='Cancel' " +
+               " select sum(PATABLEAMOUNT)as TotalCancelOrderAmt from tbl.orders where suserid='" + id + "' and deliveryStatus='Cancel' ";
             }
             DataSet dscounter = Database.get_DataSet(query_counter);
             if (dscounter.Tables[0].Rows.Count > 0)
@@ -697,6 +718,18 @@ namespace APIKwickWash.Controllers
                     TOTALSHOP = Convert.ToInt32(dscounter.Tables[23].Rows[0]["TOTALSHOP"]);
                 }
             }
+            if (dscounter.Tables[24].Rows.Count > 0)
+            {
+                if (dscounter.Tables[24].Rows[0]["TotalCancelOrder"] != DBNull.Value)
+                {
+                    TotalCancelOrder = Convert.ToInt32(dscounter.Tables[24].Rows[0]["TotalCancelOrder"]);
+                }
+            }
+            if (dscounter.Tables[25].Rows.Count > 0)
+            {
+                if (dscounter.Tables[25].Rows[0]["TotalCancelOrderAmt"] != DBNull.Value)
+                    TotalCancelOrderAmt = Convert.ToDouble(dscounter.Tables[25].Rows[0]["TotalCancelOrderAmt"]);
+            }
             string query_update = "update tbl.ttlUserDashboard set ttlCustomer='" + TotalCustomer + "', ttlService='" + ToatlService
                 + "', ttlProduct='" + TotalProduct + "',ttlOrders='" + TotalOrder + "',ttlOrderPending='" + TotalPendingOrder
                 + "', ttlOrderCompleted='" + TotalCompletedOrder + "',ttlPayments='" + TotalRevenue + "',ttlPaymentsPending='" + TotalCollection
@@ -706,7 +739,8 @@ namespace APIKwickWash.Controllers
                 + "', DeliveredPaid='" + DeliveredPaid + "', BookedAmount='" + BookedAmount + "', InProcessAmount='" + InProcessAmount
                 + "', ReadyForDeliveryAmount='" + ReadyForDeliveryAmount + "', DeliveredUnpaidAmount='" + DeliveredUnpaidAmount
                 + "', DeliveredPaidAmount='" + DeliveredPaidAmount + "', WALLETBALANCE='" + WALLETBALANCE + "', TOTALReferral='" + TOTALReferral
-                + "', TOTALVENDOR='" + TOTALVENDOR + "',TOTALSHOP='" + TOTALSHOP + "' where userid='" + id + "'";
+                + "', TOTALVENDOR='" + TOTALVENDOR + "',TOTALSHOP='" + TOTALSHOP
+                + "',ttlOrderCancel='" + TotalCancelOrder + "' ,ttlOrderCancelAmt='" + TotalCancelOrderAmt + "' where userid='" + id + "'";
             int res = Database.Execute(query_update);
 
             string query = "select * from tbl.ttlUserDashboard where userid='" + id + "'";

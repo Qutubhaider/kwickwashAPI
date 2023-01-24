@@ -43,6 +43,8 @@ namespace APIKwickWash.Models
         public int? ttlVendor { get; set; }
         public int? ttlShop { get; set; }
         public int? ttlReferral { get; set; }
+        public int? ttlTotalCancelOrder { get; set; }
+        public decimal? ttlTotalCancelOrderAmt { get; set; }
 
     }
 
@@ -85,6 +87,8 @@ namespace APIKwickWash.Models
             ttlVendor = Convert.ToInt32(dr["TOTALVENDOR"]);
             ttlShop = Convert.ToInt32(dr["TOTALSHOP"]);
             ttlReferral = Convert.ToInt32(dr["TOTALReferral"]);
+            ttlTotalCancelOrder = Convert.ToInt32(dr["ttlOrderCancel"]);
+            ttlTotalCancelOrderAmt = Convert.ToDecimal(dr["ttlOrderCancelAmt"]);
         }
     }
 

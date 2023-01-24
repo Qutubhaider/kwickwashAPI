@@ -61,6 +61,23 @@ namespace APIKwickWash.Controllers
             return kOrder;
         }
 
+        public List<kwickOrder> GetVendorReqOrder(string id, string val,string uid)
+        {
+            string query = "select k.isAccept,k.koId,k.cityId,k.cityName,k.areaId,k.areaName,k.Location,k.srId,k.serviceName,k.customerName,k.mobile,k.orderDate" +
+                ",k.shopId,k.lat,k.longs,c.companyName,k.dName from tbl.kwickOrder k join tbl.CompanyProfile c on k.ShopId = c.Userid " +
+                "where k.shopId in (select userId from tbl.CompanyProfile where  inVendorId ='" + uid + "') order by k.koId desc";
+            DataTable dt = Database.get_DataTable(query);
+            List<kwickOrder> kOrder = new List<Models.kwickOrder>(dt.Rows.Count);
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    kOrder.Add(new ReadKwickOrderDt(dr));
+                }
+            }
+            return kOrder;
+        }
+
         public List<kwickOrder> GetReqOrderHistory(string id, string val,string cid)
         {
             string query = "";
